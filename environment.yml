@@ -1,0 +1,20 @@
+name: mypythonapp
+channels:
+  - conda-forge
+dependencies:
+  # base: list all base dependencies here
+  - python>=3.8  # please specify the mimimum version of python here
+  - versioningit
+  # compute: list all compute dependencies here
+  - numpy
+  - pandas
+  # plot: list all plot dependencies here, if applicable
+  - matplotlib
+  # jupyter: list all jupyter dependencies here, if applicable
+  - jupyterlab
+  - ipympl
+  # add additional sections such as Qt, etc. if needed
+  # pip: if pakcages are not available on conda, list them here
+  - pip
+  - pip:
+    - bm3d-streak-removal # example

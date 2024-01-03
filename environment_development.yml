@@ -1,0 +1,20 @@
+name: mypythonapp_dev
+channels:
+  - conda-forge
+dependencies:
+  # only list additional dependencies related to development here
+  # utils:
+  - pre-commit
+  # pacakge building:
+  - boa
+  - conda-build
+  - conda-verify
+  - python-build
+  # test: list all test dependencies here
+  - pytest
+  - pytest-cov
+  - pytest-xdist
+  # if you need to install packages from pip, list them here
+  - pip
+  - pip:
+    - pytest-playwright # example
