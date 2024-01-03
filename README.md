@@ -26,3 +26,10 @@ After you create a new repository using this repo as template, please follow the
 
 5. Having code coverage, `codecov.yaml` is **strongly recommended**, please refer to [Code coverage](https://coverage.readthedocs.io/en/coverage-5.5/) for more information.
 
+6. Adjust the demo Github action yaml files for CI/CD. For more information about Github action, please refer to [Github action](https://docs.github.com/en/actions).
+
+7. Adjust the conda recipe, `conda-recipe/meta.yaml` to provide the meta information for the conda package. For more information about conda recipe, please refer to [Conda build](https://docs.conda.io/projects/conda-build/en/latest/).
+
+8. Adjust `setup.cfg` and `pyproject.toml` to match your project. For more information about `setup.cfg`, please refer to [setup.cfg](https://setuptools.readthedocs.io/en/latest/userguide/declarative_config.html). For more information about `pyproject.toml`, please refer to [pyproject.toml](https://www.python.org/dev/peps/pep-0518/).
+
+9. Clear the content of this file and add your own README.md as the project README file. We recommend putting badges of the project status at the top of the README file. For more information about badges, please refer to [shields.io](https://shields.io/).
