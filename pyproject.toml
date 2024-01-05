@@ -1,5 +1,23 @@
+[project]
+name = "examplePyapp"
+description = "Example Python repo for neutrons"
+dynamic = ["version"]
+requires-python = ">=3.10"
+dependencies = [
+  # list all runtime dependencies here
+]
+license = { text = "MIT" }
+
+[project.urls]
+homepage = ""  # if no homepage, use repo url
+
 [build-system]
-requires = ["setuptools >= 40.6.0", "wheel", "toml", "versioningit"]
+requires = [
+  "setuptools >= 40.6.0",
+  "wheel",
+  "toml",
+  "versioningit"
+]
 build-backend = "setuptools.build_meta"
 
 [tool.black]
@@ -20,6 +38,13 @@ distance-dirty = "{next_version}.dev{distance}+d{build_date:%Y%m%d%H%M}"
 [tool.versioningit.write]
 file = "src/packagenamepy/_version.py"
 
+[tool.setuptools.packages.find]
+where = ["src"]
+exclude = ["tests*", "scripts*", "docs*", "notebooks*"]
+
+[tool.setuptools.package-data]
+"*" = ["*.yml","*.yaml","*.ini"]
+
 [tool.pytest.ini_options]
 pythonpath = [
   ".", "src", "scripts"
@@ -30,3 +55,14 @@ norecursedirs = [".git", "tmp*", "_tmp*", "__pycache__", "*dataset*", "*data_set
 markers = [
     "mymarker: example markers goes here"
 ]
+
+[tool.pylint]
+max-line-length = 120
+disable = ["too-many-locals",
+           "too-many-statements",
+           "too-many-instance-attributes",
+           "too-many-arguments",
+           "duplicate-code"
+]
+
+# Add additional 3rd party tool configuration here as needed
