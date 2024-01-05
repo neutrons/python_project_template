@@ -34,4 +34,6 @@ After you create a new repository using this repo as template, please follow the
     8.1 We strongly recommended using a single `pyproject.toml` file to manage all the project metadata, including the project name, version, author, license, etc.
     8.2 Python is moving away from `setup.cfg`/`setup.py`, and we would like to follow the trend for our new projects.
 
-9. Clear the content of this file and add your own README.md as the project README file. We recommend putting badges of the project status at the top of the README file. For more information about badges, please refer to [shields.io](https://shields.io/).
+9. Adjust `__main__.py` if the software need to have a module level entrance. For pure Python library, please delete `__main__.py`.
+
+10. Clear the content of this file and add your own README.md as the project README file. We recommend putting badges of the project status at the top of the README file. For more information about badges, please refer to [shields.io](https://shields.io/).
