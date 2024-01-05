@@ -22,7 +22,6 @@ jobs:
       - name: install additional dependencies
         run: |
           echo "installing additional dependencies from environment_development.yml"
-          conda env update --file environment_development.yml  # you might need to adjust the environment name here
       - name: build conda package
         run: |
           # set up environment

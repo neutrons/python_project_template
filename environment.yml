@@ -2,6 +2,7 @@ name: mypythonapp
 channels:
   - conda-forge
 dependencies:
+  # -- Runtime dependencies
   # base: list all base dependencies here
   - python>=3.8  # please specify the mimimum version of python here
   - versioningit
@@ -13,8 +14,23 @@ dependencies:
   # jupyter: list all jupyter dependencies here, if applicable
   - jupyterlab
   - ipympl
+  # -- Development dependencies
+  # utils:
+  - pre-commit
+  # pacakge building:
+  - boa
+  - conda-build
+  - conda-verify
+  - python-build
+  # test: list all test dependencies here
+  - pytest
+  - pytest-cov
+  - pytest-xdist
+  # --------------------------------------------------
   # add additional sections such as Qt, etc. if needed
-  # pip: if pakcages are not available on conda, list them here
+  # --------------------------------------------------
+  # if pakcages are not available on conda, list them here
   - pip
   - pip:
     - bm3d-streak-removal # example
+    - pytest-playwright

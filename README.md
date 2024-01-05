@@ -14,13 +14,12 @@ After you create a new repository using this repo as template, please follow the
 
 2. Change the License if MIT license is not suitable for you project. For more information about licenses, please refer to [Choose an open source license](https://choosealicense.com/).
 
-3. Update the envrionment dependency files
+3. Update the envrionment dependency file `environment.yml`, which contain both runtime and development dependencies. For more information about conda environment file, please refer to [Conda environment file](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#creating-an-environment-file-manually).
     
-    3.1 `environment.yml` is intended to provide the mimimum dependency for this project to run as it is.
+    3.1 We strongly recommended using a single `environment.yml` file to manage all the dependencies, including the runtime and development dependencies.
+    3.2 Please add comments to the `environment.yml` file to explain the dependencies.
+    3.3 Please prune the dependencies to the minimum when possible, we would like the solver to figure out the dependency tree for us.
     
-    3.2 `environment_development.yml` should provide additional dependencies for development, such as testing, linting, etc.
-    
-    3.3 Developers should use `environment.yml` to create the development environment first, then use ``environment_development.yml` to update the environment to setup the development.
 
 4. Adjust pre-commit configuration file, `.pre-commit-config.yaml` to enable/disable the hooks you need. For more information about pre-commit, please refer to [pre-commit](https://pre-commit.com/).
 

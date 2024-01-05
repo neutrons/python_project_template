@@ -22,7 +22,7 @@ jobs:
           environment-file: environment.yml
       - name: install additional dependencies
         run: |
-          echo "installing additional dependencies"
+          echo "installing additional dependencies if cannot be installed from conda"
       - name: run unit tests
         run: |
           echo "running unit tests"
