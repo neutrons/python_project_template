@@ -7,7 +7,7 @@ repos:
     - id: check-merge-conflict
     - id: check-yaml
       args: [--allow-multiple-documents]
-      exclude: "conda.recipe/meta.yml"
+      exclude: "conda.recipe/meta.yaml"
     - id: end-of-file-fixer
       exclude: "tests/cis_tests/.*"
     - id: trailing-whitespace
