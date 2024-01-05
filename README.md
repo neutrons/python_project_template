@@ -30,6 +30,9 @@ After you create a new repository using this repo as template, please follow the
 
 7. Adjust the conda recipe, `conda-recipe/meta.yaml` to provide the meta information for the conda package. For more information about conda recipe, please refer to [Conda build](https://docs.conda.io/projects/conda-build/en/latest/).
 
-8. Adjust `setup.cfg` and `pyproject.toml` to match your project. For more information about `setup.cfg`, please refer to [setup.cfg](https://setuptools.readthedocs.io/en/latest/userguide/declarative_config.html). For more information about `pyproject.toml`, please refer to [pyproject.toml](https://www.python.org/dev/peps/pep-0518/).
+8. Adjust `pyproject.toml` to match your project. For more information about `pyproject.toml`, please refer to [pyproject.toml](https://www.python.org/dev/peps/pep-0518/).
+
+    8.1 We strongly recommended using a single `pyproject.toml` file to manage all the project metadata, including the project name, version, author, license, etc.
+    8.2 Python is moving away from `setup.cfg`/`setup.py`, and we would like to follow the trend for our new projects.
 
 9. Clear the content of this file and add your own README.md as the project README file. We recommend putting badges of the project status at the top of the README file. For more information about badges, please refer to [shields.io](https://shields.io/).
