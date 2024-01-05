@@ -4,12 +4,13 @@ description = "Example Python repo for neutrons"
 dynamic = ["version"]
 requires-python = ">=3.10"
 dependencies = [
+  "python",
   # list all runtime dependencies here
 ]
 license = { text = "MIT" }
 
 [project.urls]
-homepage = ""  # if no homepage, use repo url
+homepage = "https://github.com/neutrons/python_project_template/"  # if no homepage, use repo url
 
 [build-system]
 requires = [
