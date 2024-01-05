@@ -18,7 +18,6 @@ source:
 
 build:
   noarch: python
-  linux-64: python
   number: {{ version_number }}
   string: py{{py}}
   script: {{ PYTHON }} -m pip install . --no-deps --ignore-installed -vvv
