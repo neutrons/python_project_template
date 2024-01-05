@@ -1,5 +1,5 @@
 [project]
-name = "examplePyapp"
+name = "examplepyapp"
 description = "Example Python repo for neutrons"
 dynamic = ["version"]
 requires-python = ">=3.10"
