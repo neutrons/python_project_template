@@ -6,17 +6,14 @@ repos:
       args: [--maxkb=8192]
     - id: check-merge-conflict
     - id: check-yaml
-      exclude: |
-        (?x)^(
-        ^conda.recipe/meta.yaml
-        )$
-
+      args: [--allow-multiple-documents]
+      exclude: "conda.recipe/meta.yml"
     - id: end-of-file-fixer
       exclude: "tests/cis_tests/.*"
     - id: trailing-whitespace
       exclude: "tests/cis_tests/.*"
 - repo: https://github.com/astral-sh/ruff-pre-commit
-  rev: v0.1.9
+  rev: v0.1.11
   hooks:
     - id: ruff
       args: [--fix, --exit-non-zero-on-fix]
