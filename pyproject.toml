@@ -26,7 +26,7 @@ line-length = 119
 
 [tool.versioningit.vcs]
 method = "git"
-default-tag = "5.0.0"
+default-tag = "0.0.1"
 
 [tool.versioningit.next-version]
 method = "minor"

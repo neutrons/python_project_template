@@ -33,15 +33,14 @@ jobs:
           VERSION=$(versioningit ../) conda mambabuild --output-folder . .
           conda verify noarch/mypackagename*.tar.bz2
       - name: upload conda package to anaconda
+        shell: bash -l {0}
+        if: startsWith(github.ref, 'refs/tags/v')
+        env:
+          ANACONDA_API_TOKEN: ${{ secrets.ANACONDA_TOKEN }}
+          IS_RC: ${{ contains(github.ref, 'rc') }}
         run: |
-          shell: bash -l {0}
-          if: startsWith(github.ref, 'refs/tags/v')
-          env:
-            ANACONDA_API_TOKEN: ${{ secrets.ANACONDA_TOKEN }}
-            IS_RC: ${{ contains(github.ref, 'rc') }}
-          run: |
-            # label is main or rc depending on the tag-name
-            CONDA_LABEL="main"
-            if [ "${IS_RC}" = "true" ]; then CONDA_LABEL="rc"; fi
-            echo pushing ${{ github.ref }} with label $CONDA_LABEL
-            anaconda upload --label $CONDA_LABEL conda.recipe/noarch/mypackagename*.tar.bz2
+          # label is main or rc depending on the tag-name
+          CONDA_LABEL="main"
+          if [ "${IS_RC}" = "true" ]; then CONDA_LABEL="rc"; fi
+          echo pushing ${{ github.ref }} with label $CONDA_LABEL
+          anaconda upload --label $CONDA_LABEL conda.recipe/noarch/mypackagename*.tar.bz2
