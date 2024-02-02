@@ -8,7 +8,8 @@
 # this will get the version set by environment variable
 {% set version = environ.get('VERSION') %}
 {% set version_number = version.split('+')[0] %}
-{% set build_number = version.split("d")[1] if "d" in version else 0 %}
+# change the build number by hand if you want to rebuild the package
+{% set build_number = 0 %}
 
 package:
   name: mypackagename
