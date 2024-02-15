@@ -1,5 +1,12 @@
-"""Short description of the package."""
-try:
-    from ._version import __version__  # noqa: F401
-except ImportError:
-    __version__ = "unknown"
+"""
+Contains the entry point for the application
+"""
+
+from ._version import __version__  # noqa: F401
+
+
+def PackageName():  # pylint: disable=invalid-name
+    """This is needed for backward compatibility because mantid workbench does "from shiver import Shiver" """
+    from .packagenamepy import PackageName as packagename  # pylint: disable=import-outside-toplevel
+
+    return packagename()
