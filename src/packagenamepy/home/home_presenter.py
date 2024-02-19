@@ -1,6 +1,4 @@
 """Presenter for the Main tab"""
-import os
-from qtpy.QtWidgets import QWidget
 
 
 class HomePresenter:  # pylint: disable=too-many-public-methods
@@ -9,7 +7,7 @@ class HomePresenter:  # pylint: disable=too-many-public-methods
     def __init__(self, view, model):
         self._view = view
         self._model = model
- 
+
     @property
     def view(self):
         """Return the view for this presenter"""

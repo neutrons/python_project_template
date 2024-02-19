@@ -1,5 +1,5 @@
 """PyQt widget for the main tab"""
-from qtpy.QtWidgets import QWidget, QHBoxLayout, QErrorMessage, QMessageBox
+from qtpy.QtWidgets import QWidget, QHBoxLayout
 
 
 class Home(QWidget):  # pylint: disable=too-many-public-methods

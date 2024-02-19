@@ -35,7 +35,7 @@ class PackageName(QMainWindow):
         super().__init__(parent)
         logger.information(f"PackageName version: {__version__}")
         config = Configuration()
-        
+
         if not config.is_valid():
             msg = (
                 "Error with configuration settings!",

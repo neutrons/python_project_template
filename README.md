@@ -54,7 +54,7 @@ After you create a new repository using this repo as template, please follow the
     8.2 Specify package description at: https://github.com/neutrons/python_project_template/blob/df49fa434591c073fe88f50d419b14c789fb1e17/pyproject.toml#L3
 
     8.3 Specify package name at: https://github.com/neutrons/python_project_template/blob/df49fa434591c073fe88f50d419b14c789fb1e17/pyproject.toml#L40
-    
+
     8.4 We strongly recommended using a single `pyproject.toml` file to manage all the project metadata, including the project name, version, author, license, etc.
 
     8.5 Python is moving away from `setup.cfg`/`setup.py`, and we would like to follow the trend for our new projects.
