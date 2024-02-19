@@ -4,11 +4,11 @@ Main Qt window
 
 from qtpy.QtWidgets import QHBoxLayout, QVBoxLayout, QWidget, QTabWidget, QPushButton
 
-from packagenamepy.presenters.main import MainPresenter
-from packagenamepy.models.main import MainModel
-from packagenamepy.views.main import Main
+from packagenamepy.home.home_view import Home
+from packagenamepy.home.home_model import HomeModel
+from packagenamepy.home.home_presenter import HomePresenter
 
-from packagenamepy.models.help import help_function
+from packagenamepy.help.help_model import help_function
 
 
 class MainWindow(QWidget):
@@ -21,10 +21,10 @@ class MainWindow(QWidget):
 
         ### Main tab
         self.tabs = QTabWidget()
-        main = Main(self)
-        main_model = MainModel()
-        self.main_presenter = MainPresenter(main, main_model)
-        self.tabs.addTab(main, "Main")
+        home = Home(self)
+        home_model = HomeModel()
+        self.home_presenter = HomePresenter(home, home_model)
+        self.tabs.addTab(home, "Home")
         
 
         ### Set tab layout
@@ -48,15 +48,15 @@ class MainWindow(QWidget):
         self.setLayout(layout)
 
         # register child widgets to make testing easier
-        self.main = main
+        self.home = home
 
     def handle_help(self):
         """
         get current tab type and open the corresponding help page
         """
         open_tab = self.tabs.currentWidget()
-        if isinstance(open_tab, Main):
-            context = "main"
+        if isinstance(open_tab, Home):
+            context = "home"
         else:
             context = ""
         help_function(context=context)
