@@ -4,7 +4,6 @@ description = "Example Python repo for neutrons"
 dynamic = ["version"]
 requires-python = ">=3.10"
 dependencies = [
-  "python",
   # list all runtime dependencies here
 ]
 license = { text = "MIT" }
@@ -45,6 +44,10 @@ exclude = ["tests*", "scripts*", "docs*", "notebooks*"]
 
 [tool.setuptools.package-data]
 "*" = ["*.yml","*.yaml","*.ini"]
+
+[project.gui-scripts]
+packagenamepy = "packagenamepy.packagename:gui"
+
 
 [tool.pytest.ini_options]
 pythonpath = [
