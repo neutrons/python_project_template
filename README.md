@@ -35,39 +35,40 @@ After you create a new repository using this repo as template, please follow the
 
 6. Adjust the demo Github action yaml files for CI/CD. For more information about Github action, please refer to [Github action](https://docs.github.com/en/actions).
 
-    6.1 Specify package name at: https://github.com/neutrons/python_project_template/blob/df49fa434591c073fe88f50d419b14c789fb1e17/.github/workflows/package.yml#L34
+    6.1 Specify package name at: .github/workflows/package.yml#L34
 
-    6.2 Specify package name at: https://github.com/neutrons/python_project_template/blob/df49fa434591c073fe88f50d419b14c789fb1e17/.github/workflows/package.yml#L46
+    6.2 Specify package name at: .github/workflows/package.yml#L46
 
 
 7. Adjust the conda recipe, `conda-recipe/meta.yaml` to provide the meta information for the conda package. For more information about conda recipe, please refer to [Conda build](https://docs.conda.io/projects/conda-build/en/latest/).
 
-    7.1 Specify package name at: https://github.com/neutrons/python_project_template/blob/df49fa434591c073fe88f50d419b14c789fb1e17/conda.recipe/meta.yaml#L15
+    7.1 Specify package name at: conda.recipe/meta.yaml#L15
 
-    7.2 Update license family, if necessary: https://github.com/neutrons/python_project_template/blob/df49fa434591c073fe88f50d419b14c789fb1e17/conda.recipe/meta.yaml#L42
+    7.2 Update license family, if necessary: conda.recipe/meta.yaml#L42
 
 
 8. Adjust `pyproject.toml` to match your project. For more information about `pyproject.toml`, please refer to [pyproject.toml](https://www.python.org/dev/peps/pep-0518/).
 
-    8.1 Specify package name at: https://github.com/neutrons/python_project_template/blob/df49fa434591c073fe88f50d419b14c789fb1e17/pyproject.toml#L2
+    8.1 Specify package name at: pyproject.toml#L2
 
-    8.2 Specify package description at: https://github.com/neutrons/python_project_template/blob/df49fa434591c073fe88f50d419b14c789fb1e17/pyproject.toml#L3
+    8.2 Specify package description at: pyproject.toml#L3
 
-    8.3 Specify package name at: https://github.com/neutrons/python_project_template/blob/df49fa434591c073fe88f50d419b14c789fb1e17/pyproject.toml#L40
+    8.3 Specify package name at: pyproject.toml#L40
 
     8.4 We strongly recommended using a single `pyproject.toml` file to manage all the project metadata, including the project name, version, author, license, etc.
 
     8.5 Python is moving away from `setup.cfg`/`setup.py`, and we would like to follow the trend for our new projects.
 
 
-9. Specify package name at  https://github.com/neutrons/python_project_template/tree/df49fa434591c073fe88f50d419b14c789fb1e17/src/packagenamepy
+9. Specify package name at  src/packagenamepy
 
 
-10. Adjust 'src/packagenamepy/__main__.py: https://github.com/neutrons/python_project_template/blob/df49fa434591c073fe88f50d419b14c789fb1e17/src/packagenamepy/__main__.py
+10. Specify package name at: src/packagenamepy/packagename.py
 
-    10.1 Adjust `__main__.py` if the software need to have a module level entrance. For pure Python library, please delete `__main__.py`.
-
-    10.2 Adjust the comment to invoke the program: https://github.com/neutrons/python_project_template/blob/df49fa434591c073fe88f50d419b14c789fb1e17/src/packagenamepy/__main__.py#L8
+11. If a GUI isn't used, delete the MVP structure at src/packagenamepy:
+    11.1: mainwindow.py
+    11.2: home/
+    11.3: help/
 
 
 11. Clear the content of this file and add your own README.md as the project README file. We recommend putting badges of the project status at the top of the README file. For more information about badges, please refer to [shields.io](https://shields.io/).
