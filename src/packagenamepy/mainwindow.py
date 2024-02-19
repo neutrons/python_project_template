@@ -25,19 +25,16 @@ class MainWindow(QWidget):
         home_model = HomeModel()
         self.home_presenter = HomePresenter(home, home_model)
         self.tabs.addTab(home, "Home")
-        
 
         ### Set tab layout
         layout = QVBoxLayout()
         layout.addWidget(self.tabs)
 
-
         ### Create bottom interface here ###
-        
+
         # Help button
         help_button = QPushButton("Help")
         help_button.clicked.connect(self.handle_help)
-
 
         # Set bottom interface layout
         hor_layout = QHBoxLayout()

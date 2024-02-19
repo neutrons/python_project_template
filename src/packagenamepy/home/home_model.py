@@ -4,8 +4,6 @@
 from mantid.kernel import Logger
 
 
-
-
 logger = Logger("PACKAGENAME")
 
 
@@ -14,4 +12,3 @@ class HomeModel:  # pylint: disable=too-many-public-methods
 
     def __init__(self):
         return
-
