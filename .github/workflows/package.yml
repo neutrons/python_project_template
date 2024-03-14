@@ -30,7 +30,7 @@ jobs:
           cd conda.recipe
           echo "versioningit $(versioningit ../)"
           # build the package
-          VERSION=$(versioningit ../) conda mambabuild --output-folder . .
+          VERSION=$(versioningit ../) conda mambabuild --channel conda-forge --output-folder . .
           conda verify noarch/mypackagename*.tar.bz2
       - name: upload conda package to anaconda
         shell: bash -l {0}
