@@ -39,6 +39,6 @@ requirements:
 about:
   home: {{ url }}
   license: {{ license }}
-  license_family: GPL
+  license_family: MIT
   license_file: ../LICENSE
   summary: {{ description }}
