@@ -59,7 +59,7 @@ After you create a new repository using this repo as template, please follow the
 
     8.5 Projects will use a  single `pyproject.toml` file to manage all the project metadata, including the project name, version, author, license, etc.
 
-    8.6 Python is moving away from `setup.cfg`/`setup.py`, and we would like to follow the trend for our new projects.
+    8.6 Python has moved away from `setup.cfg`/`setup.py`, and we would like to follow the trend for our new projects.
 
 
 10. Specify package name at  src/packagenamepy
