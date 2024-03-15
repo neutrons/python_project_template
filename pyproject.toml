@@ -45,9 +45,11 @@ exclude = ["tests*", "scripts*", "docs*", "notebooks*"]
 [tool.setuptools.package-data]
 "*" = ["*.yml","*.yaml","*.ini"]
 
+[project.scripts]
+packagename-cli = "packagenamepy.packagename:main"
+
 [project.gui-scripts]
 packagenamepy = "packagenamepy.packagename:gui"
-
 
 [tool.pytest.ini_options]
 pythonpath = [

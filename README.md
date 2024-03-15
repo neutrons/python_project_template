@@ -53,19 +53,21 @@ After you create a new repository using this repo as template, please follow the
 
     8.2 Specify package description at: pyproject.toml#L3
 
-    8.3 Specify package name at: pyproject.toml#L40
+    8.3 Specify package name at: pyproject.toml#L39
 
-    8.4 We strongly recommended using a single `pyproject.toml` file to manage all the project metadata, including the project name, version, author, license, etc.
+    8.4 Specify any terminal entry points (terminal commands) at : pyproject.toml#48. In the example, invoking `packagename-cli` in a terminal is equivalent to running the python script `from packagenamepy.packagename.import main; main()"
 
-    8.5 Python is moving away from `setup.cfg`/`setup.py`, and we would like to follow the trend for our new projects.
+    8.5 Projects will use a  single `pyproject.toml` file to manage all the project metadata, including the project name, version, author, license, etc.
+
+    8.6 Python has moved away from `setup.cfg`/`setup.py`, and we would like to follow the trend for our new projects.
 
 
-9. Specify package name at  src/packagenamepy
+10. Specify package name at  src/packagenamepy
 
 
-10. Specify package name at: src/packagenamepy/packagename.py
+11. Specify package name at: src/packagenamepy/packagename.py
 
-11. If a GUI isn't used, delete the MVP structure at src/packagenamepy:
+12. If a GUI isn't used, delete the MVP structure at src/packagenamepy:
     11.1: mainwindow.py
     11.2: home/
     11.3: help/
