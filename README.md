@@ -57,7 +57,7 @@ After you create a new repository using this repo as template, please follow the
 
     8.4 Specify any terminal entry points (terminal commands) at : pyproject.toml#48. In the example, invoking `packagename-cli` in a terminal is equivalent to running the python script `from packagenamepy.packagename.import main; main()"
 
-    8.5 We strongly recommended using a single `pyproject.toml` file to manage all the project metadata, including the project name, version, author, license, etc.
+    8.5 Projects will use a  single `pyproject.toml` file to manage all the project metadata, including the project name, version, author, license, etc.
 
     8.6 Python is moving away from `setup.cfg`/`setup.py`, and we would like to follow the trend for our new projects.
 
