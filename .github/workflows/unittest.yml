@@ -41,4 +41,3 @@ jobs:
           CHANNELS="--channel mantid/label/main --channel conda-forge"
           VERSION=$(versioningit ../) conda mambabuild $CHANNELS --output-folder . .
           conda verify noarch/usansred*.tar.bz2
-
