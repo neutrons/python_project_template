@@ -18,6 +18,8 @@ dependencies:
   # utils:
   - pre-commit
   # pacakge building:
+  - libmamba
+  - libarchive
   - boa
   - conda-build < 4  # conda-build 24.x has a bug, missing update_index from conda_build.index
   - conda-verify
