@@ -31,3 +31,14 @@ jobs:
           python -m pytest --cov=src --cov-report=xml --cov-report=term-missing tests/
       - name: upload coverage to codecov
         uses: codecov/codecov-action@v1
+      - name: build conda package
+        run: |
+          # test that the conda package builds
+          cd conda.recipe
+          echo "versioningit $(versioningit ../)"
+          # conda channels could have been defined in the conda-incubator, but you can copy/paste the lines
+          # below to build the conda package in your local machine
+          CHANNELS="--channel mantid/label/main --channel conda-forge"
+          VERSION=$(versioningit ../) conda mambabuild $CHANNELS --output-folder . .
+          conda verify noarch/usansred*.tar.bz2
+
