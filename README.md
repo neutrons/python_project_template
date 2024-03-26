@@ -96,7 +96,7 @@ For more information about badges, please refer to [shields.io](https://shields.
 ### Add an access token to anaconda
 
 Here we assume your intent is to upload the conda package to the [anaconda.org/neutrons](https://anaconda.org/neutrons) organization.
-An administrator of _anaconda.org/neutrons_ must create an access token for your repository in the [access settings](https://anaconda.org/neutrons/settings/access).    
+An administrator of _anaconda.org/neutrons_ must create an access token for your repository in the [access settings](https://anaconda.org/neutrons/settings/access).
 
 After created, the token must be stored in a _repository secret_:
 1. Navigate to the main page of the repository on GitHub.com.
