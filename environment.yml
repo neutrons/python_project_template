@@ -20,6 +20,7 @@ dependencies:
   # pacakge building:
   - libmamba
   - libarchive
+  - anaconda-client
   - boa
   - conda-build < 4  # conda-build 24.x has a bug, missing update_index from conda_build.index
   - conda-verify
