@@ -66,7 +66,7 @@ to [pyproject.toml](https://www.python.org/dev/peps/pep-0518/).
 
     8.3 Specify package name at: pyproject.toml#L39
 
-    8.4 Specify any terminal entry points (terminal commands) at : pyproject.toml#48. In the example, 
+    8.4 Specify any terminal entry points (terminal commands) at : pyproject.toml#48. In the example,
 invoking `packagename-cli` in a terminal is equivalent to running the python script
 `from packagenamepy.packagename.import main; main()"
 
@@ -97,7 +97,7 @@ to [shields.io](https://shields.io/).
 Here we assume your intent is to
 upload the conda package to the [anaconda.org/neutrons](https://anaconda.org/neutrons) organization.
 An administrator of _anaconda.org/neutrons_ must create an access token for your repository
-in the [access settings](https://anaconda.org/neutrons/settings/access).    
+in the [access settings](https://anaconda.org/neutrons/settings/access).
 
 After created, the token must be stored in a _repository secret_:
 1. Navigate to the main page of the repository on GitHub.com.
@@ -107,4 +107,3 @@ After created, the token must be stored in a _repository secret_:
 5. Enter `ANACONDA_TOKEN` for the secret name
 6. Paste the Anaconda access token
 7. Click on the "Add secret" button
-
