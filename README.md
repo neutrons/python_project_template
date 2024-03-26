@@ -106,3 +106,5 @@ After created, the token must be stored in a _repository secret_:
 5. Enter `ANACONDA_TOKEN` for the secret name
 6. Paste the Anaconda access token
 7. Click on the "Add secret" button
+8. Test the setup by creating a release candidate tag,
+which will result in a package built and uploaded to https://anaconda.org/neutrons/mypackagename
