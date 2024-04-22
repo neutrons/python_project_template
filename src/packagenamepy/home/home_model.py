@@ -1,6 +1,5 @@
 """Model for the Main tab"""
 
-
 from mantid.kernel import Logger
 
 

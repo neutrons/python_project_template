@@ -1,4 +1,5 @@
-""" single help module """
+"""single help module"""
+
 import webbrowser
 from packagenamepy.configuration import get_data
 
