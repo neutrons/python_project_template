@@ -108,3 +108,7 @@ After created, the token must be stored in a _repository secret_:
 7. Click on the "Add secret" button
 8. Test the setup by creating a release candidate tag,
 which will result in a package built and uploaded to https://anaconda.org/neutrons/mypackagename
+
+### Add an access token to codecov
+Follow the instructions in the [Confluence page](https://ornl-neutrons.atlassian.net/wiki/spaces/NDPD/pages/103546883/Coverage+reports)
+to create the access token.
