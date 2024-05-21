@@ -66,7 +66,9 @@ autosummary_generate = True
 napoleon_google_docstring = False
 napoleon_numpy_docstring = True
 
-html_static_path = ["_static"]
+# "Static" resources (like *.css *.js files, or images) to be included when generating the HTML documentation.
+if os.path.exists("_static"):
+    html_static_path = ["_static"]
 
 # If true, `todo` and `todoList` produce output, else they produce nothing.
 todo_include_todos = True
