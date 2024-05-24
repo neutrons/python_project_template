@@ -4,6 +4,7 @@
 # https://www.sphinx-doc.org/en/master/usage/configuration.html
 import os
 import sys
+
 import versioningit
 
 sys.path.insert(0, os.path.abspath("../src"))
@@ -59,7 +60,9 @@ exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = "alabaster"  # "sphinx_rtd_theme", please add corresponding package to environment.yml if you want to use it
+html_theme = (
+    "alabaster"  # "sphinx_rtd_theme", please add corresponding package to environment.yml if you want to use it
+)
 autosummary_generate = True
 
 # Napoleon settings

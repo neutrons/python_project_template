@@ -1,14 +1,11 @@
-"""
-Main Qt window
-"""
+"""Main Qt window"""
 
-from qtpy.QtWidgets import QHBoxLayout, QVBoxLayout, QWidget, QTabWidget, QPushButton
-
-from packagenamepy.home.home_view import Home
-from packagenamepy.home.home_model import HomeModel
-from packagenamepy.home.home_presenter import HomePresenter
+from qtpy.QtWidgets import QHBoxLayout, QPushButton, QTabWidget, QVBoxLayout, QWidget
 
 from packagenamepy.help.help_model import help_function
+from packagenamepy.home.home_model import HomeModel
+from packagenamepy.home.home_presenter import HomePresenter
+from packagenamepy.home.home_view import Home
 
 
 class MainWindow(QWidget):
@@ -48,9 +45,7 @@ class MainWindow(QWidget):
         self.home = home
 
     def handle_help(self):
-        """
-        get current tab type and open the corresponding help page
-        """
+        """Get current tab type and open the corresponding help page"""
         open_tab = self.tabs.currentWidget()
         if isinstance(open_tab, Home):
             context = "home"

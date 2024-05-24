@@ -1,12 +1,13 @@
 """Module to load the the settings from SHOME/.packagename/configuration.ini file
 
-Will fall back to a default"""
+Will fall back to a default
+"""
 
 import os
 import shutil
-
 from configparser import ConfigParser
 from pathlib import Path
+
 from mantid.kernel import Logger
 
 logger = Logger("PACKAGENAME")
@@ -19,15 +20,13 @@ class Configuration:
     """Load and validate Configuration Data"""
 
     def __init__(self):
-        """initialization of configuration mechanism"""
+        """Initialization of configuration mechanism"""
         # capture the current state
         self.valid = False
 
         # locate the template configuration file
         project_directory = Path(__file__).resolve().parent
-        self.template_file_path = os.path.join(
-            project_directory, "configuration_template.ini"
-        )
+        self.template_file_path = os.path.join(project_directory, "configuration_template.ini")
 
         # retrieve the file path of the file
         self.config_file_path = CONFIG_PATH_FILE
@@ -52,13 +51,12 @@ class Configuration:
                 logger.error(str(err))
                 logger.error(f"Problem with the file: {self.config_file_path}")
         else:
-            logger.error(
-                f"Template configuration file: {self.template_file_path} is missing!"
-            )
+            logger.error(f"Template configuration file: {self.template_file_path} is missing!")
 
     def validate(self):
-        """validates that the fields exist at the config_file_path and writes any missing fields/data
-        using the template configuration file: configuration_template.ini as a guide"""
+        """Validates that the fields exist at the config_file_path and writes any missing fields/data
+        using the template configuration file: configuration_template.ini as a guide
+        """
         template_config = ConfigParser(allow_no_value=True, comment_prefixes="/")
         template_config.read(self.template_file_path)
         for section in template_config.sections():
@@ -77,12 +75,12 @@ class Configuration:
         self.valid = True
 
     def is_valid(self):
-        """returns the configuration state"""
+        """Returns the configuration state"""
         return self.valid
 
 
 def get_data(section, name=None):
-    """retrieves the configuration data for a variable with name"""
+    """Retrieves the configuration data for a variable with name"""
     # default file path location
     config_file_path = CONFIG_PATH_FILE
     if os.path.exists(config_file_path):

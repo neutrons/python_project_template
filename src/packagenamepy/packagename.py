@@ -1,12 +1,10 @@
-"""
-Main Qt application
-"""
+"""Main Qt application"""
 
 import sys
-from qtpy.QtWidgets import QApplication, QMainWindow
 
 from mantid.kernel import Logger
 from mantidqt.gui_helper import set_matplotlib_backend
+from qtpy.QtWidgets import QApplication, QMainWindow
 
 # make sure matplotlib is correctly set before we import shiver
 set_matplotlib_backend()
@@ -15,8 +13,8 @@ set_matplotlib_backend()
 import mantid.simpleapi  # noqa: F401, E402 pylint: disable=unused-import, wrong-import-position
 
 from packagenamepy.configuration import Configuration  # noqa: E402 pylint: disable=wrong-import-position
-from packagenamepy.version import __version__  # noqa: E402 pylint: disable=wrong-import-position
 from packagenamepy.mainwindow import MainWindow  # noqa: E402 pylint: disable=wrong-import-position
+from packagenamepy.version import __version__  # noqa: E402 pylint: disable=wrong-import-position
 
 logger = Logger("PACKAGENAME")
 
@@ -52,9 +50,7 @@ class PackageName(QMainWindow):
 
 
 def gui():
-    """
-    Main entry point for Qt application
-    """
+    """Main entry point for Qt application"""
     input_flags = sys.argv[1::]
     if "--v" in input_flags or "--version" in input_flags:
         print(__version__)
