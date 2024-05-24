@@ -6,8 +6,8 @@ except ImportError:
     __version__ = "unknown"
 
 
-def PackageName():  # pylint: disable=invalid-name
+def PackageName():  # noqa N802
     """This is needed for backward compatibility because mantid workbench does "from shiver import Shiver" """
-    from .packagenamepy import PackageName as packagename  # pylint: disable=import-outside-toplevel
+    from .packagenamepy import PackageName as packagename  # noqa N813
 
     return packagename()
