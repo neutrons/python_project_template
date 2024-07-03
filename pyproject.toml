@@ -7,9 +7,14 @@ dependencies = [
   # list all runtime dependencies here
 ]
 license = { text = "MIT" }
+keywords = ["neutrons", "example", "python"]
+readme = "README.md"
 
 [project.urls]
 homepage = "https://github.com/neutrons/python_project_template/"  # if no homepage, use repo url
+repository = "https://github.com/neutrons/python_project_template/"
+# documentation = add_url_to_readthedoc_here
+issues = "https://github.com/neutrons/python_project_template/issues"
 
 [build-system]
 requires = [
