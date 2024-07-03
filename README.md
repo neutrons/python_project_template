@@ -112,3 +112,36 @@ which will result in a package built and uploaded to https://anaconda.org/neutro
 ### Add an access token to codecov
 Follow the instructions in the [Confluence page](https://ornl-neutrons.atlassian.net/wiki/spaces/NDPD/pages/103546883/Coverage+reports)
 to create the access token.
+
+## Packaging building instructions
+
+The default package publishing service is anaconda.
+However, we also support PyPI publishing as well.
+
+### Instruction for publish to PyPI
+
+1. Make sure you have the correct access to the project on PyPI.
+2. Make sure `git status` returns a clean state.
+3. At the root of the repo, use `python -m build` to generate the wheel.
+4. Check the wheel with `twine check dist/*`, everything should pass before we move to next step.
+5. When doing manual upload test, make sure to use testpypi instead of pypi.
+6. Use `twine upload --repository testpypi dist/*` to upload to testpypi, you will need to specify the testpipy url in your `~/.pypirc`, i.e.
+
+```conf
+[distutils]
+index-servers =
+    pypi
+    testpypi
+
+[testpypi]
+  repository = https://test.pypi.org/legacy/
+  username = __token__
+  password = YOUR_TESTPYPI_TOKEN
+```
+
+7. Test the package on testpypi with `pip install --index-url https://test.pypi.org/simple/ mypackagename`.
+8. If everything is good, use the Github workflow, `package.yml` to trigger the publishing to PyPI.
+
+### Instruction for publish to Anaconda
+
+Publishing to Anaconda is handled via workflow, `package.yml`.
