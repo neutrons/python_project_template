@@ -25,6 +25,7 @@ dependencies:
   - conda-build < 4  # conda-build 24.x has a bug, missing update_index from conda_build.index
   - conda-verify
   - python-build
+  - twine  # for uploading to pypi and testpypi
   # test: list all test dependencies here
   - pytest
   - pytest-cov
