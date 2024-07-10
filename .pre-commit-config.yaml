@@ -13,10 +13,14 @@ repos:
     - id: trailing-whitespace
       exclude: "tests/cis_tests/.*"
 - repo: https://github.com/astral-sh/ruff-pre-commit
-  rev: v0.4.4
+  rev: v0.5.1
   hooks:
     - id: ruff
       args: [--fix, --exit-non-zero-on-fix]
       exclude: "tests/cis_tests/.*"
     - id: ruff-format
       exclude: "tests/cis_tests/.*"
+- repo: https://github.com/codespell-project/codespell
+  rev: v2.3.0
+  hooks:
+    - id: codespell
