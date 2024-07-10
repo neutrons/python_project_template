@@ -65,7 +65,7 @@ jobs:
           environment-file: environment.yml
           cache-environment-key: ${{ runner.os }}-env-${{ hashFiles('**/environment.yml') }}
           cache-downloads-key: ${{ runner.os }}-downloads-${{ hashFiles('**/environment.yml') }}
-      - name: build pypi pacakge
+      - name: build pypi package
         run: |
           # build the package
           VERSION=$(versioningit .) python -m build

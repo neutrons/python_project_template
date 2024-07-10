@@ -4,7 +4,7 @@ channels:
 dependencies:
   # -- Runtime dependencies
   # base: list all base dependencies here
-  - python>=3.8  # please specify the mimimum version of python here
+  - python>=3.8  # please specify the minimum version of python here
   - versioningit
   # compute: list all compute dependencies here
   - numpy
@@ -17,7 +17,7 @@ dependencies:
   # -- Development dependencies
   # utils:
   - pre-commit
-  # pacakge building:
+  # package building:
   - libmamba
   - libarchive
   - anaconda-client
@@ -33,7 +33,7 @@ dependencies:
   # --------------------------------------------------
   # add additional sections such as Qt, etc. if needed
   # --------------------------------------------------
-  # if pakcages are not available on conda, list them here
+  # if packages are not available on conda, list them here
   - pip
   - pip:
     - bm3d-streak-removal # example
