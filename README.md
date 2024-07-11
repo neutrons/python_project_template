@@ -1,8 +1,11 @@
-# python_project_template
+python_project_template
+=======================
+
 This repository is a template repository for Python projects under neutrons.
 After you create a new repository using this repo as template, please follow the following steps to adjust it for the new project.
 
-## Codebase Adjustments
+Codebase Adjustments
+--------------------
 
 1. Adjust the branch protection rules for the new repo. By default, we should protect the `main` (stable), `qa` (release candidate), and `next` (development) branches.
 
@@ -24,33 +27,27 @@ For more information about conda environment file, please refer to [Conda enviro
 
     3.1 Specify environment 'name' field to match package name
 
-    3.2 We strongly recommended using a single `environment.yml` file to manage all the dependencies,
-including the runtime and development dependencies.
+    3.2 We strongly recommended using a single `environment.yml` file to manage all the dependencies, including the runtime and development dependencies.
 
     3.3 Please add comments to the `environment.yml` file to explain the dependencies.
 
-    3.4 Please prune the dependencies to the minimum when possible,
-we would like the solver to figure out the dependency tree for us.
+    3.4 Please prune the dependencies to the minimum when possible, we would like the solver to figure out the dependency tree for us.
 
 
-4. Adjust pre-commit configuration file, `.pre-commit-config.yaml` to enable/disable the hooks you need.
-For more information about pre-commit, please refer to [pre-commit](https://pre-commit.com/).
+4. Adjust pre-commit configuration file, `.pre-commit-config.yaml` to enable/disable the hooks you need. For more information about pre-commit, please refer to [pre-commit](https://pre-commit.com/).
 
 
-5. Having code coverage, `codecov.yaml` is **strongly recommended**,
-please refer to [Code coverage](https://coverage.readthedocs.io/en/coverage-5.5/) for more information.
+5. Having code coverage, `codecov.yaml` is **strongly recommended**, please refer to [Code coverage](https://coverage.readthedocs.io/en/coverage-5.5/) for more information.
 
 
-6. Adjust the demo Github action yaml files for CI/CD. For more information about Github action,
-please refer to [Github action](https://docs.github.com/en/actions).
+6. Adjust the demo Github action yaml files for CI/CD. For more information about Github action, please refer to [Github action](https://docs.github.com/en/actions).
 
     6.1 Specify package name at: .github/workflows/package.yml#L34
 
     6.2 Specify package name at: .github/workflows/package.yml#L46
 
 
-7. Adjust the conda recipe, `conda-recipe/meta.yaml` to provide the meta information for the conda package.
-For more information about conda recipe, please refer to [Conda build](https://docs.conda.io/projects/conda-build/en/latest/).
+7. Adjust the conda recipe, `conda-recipe/meta.yaml` to provide the meta information for the conda package. For more information about conda recipe, please refer to [Conda build](https://docs.conda.io/projects/conda-build/en/latest/).
 
     7.1 Specify package name at: conda.recipe/meta.yaml#L15
 
@@ -66,12 +63,11 @@ please refer to [pyproject.toml](https://www.python.org/dev/peps/pep-0518/).
 
     8.3 Specify package name at: pyproject.toml#L39
 
-    8.4 Specify any terminal entry points (terminal commands) at : pyproject.toml#48.
-In the example, invoking `packagename-cli` in a terminal is equivalent to running the python script
-`from packagenamepy.packagename.import main; main()"
+    8.4 Specify any terminal entry points (terminal commands) at: pyproject.toml#48.
 
-    8.5 Projects will use a  single `pyproject.toml` file to manage all the project metadata,
-including the project name, version, author, license, etc.
+In the example, invoking `packagename-cli` in a terminal is equivalent to running the python script `from packagenamepy.packagename.import main; main()`
+
+    8.5 Projects will use a  single `pyproject.toml` file to manage all the project metadata, including the project name, version, author, license, etc.
 
     8.6 Python has moved away from `setup.cfg`/`setup.py`, and we would like to follow the trend for our new projects.
 
@@ -91,14 +87,15 @@ including the project name, version, author, license, etc.
 We recommend putting badges of the project status at the top of the README file.
 For more information about badges, please refer to [shields.io](https://shields.io/).
 
-## Repository Adjustments
+Repository Adjustments
+----------------------
 
 ### Add an access token to anaconda
 
 Here we assume your intent is to upload the conda package to the [anaconda.org/neutrons](https://anaconda.org/neutrons) organization.
-An administrator of _anaconda.org/neutrons_ must create an access token for your repository in the [access settings](https://anaconda.org/neutrons/settings/access).
+An administrator of `anaconda.org/neutrons` must create an access token for your repository in the [access settings](https://anaconda.org/neutrons/settings/access).
 
-After created, the token must be stored in a _repository secret_:
+After created, the token must be stored in a `repository secret`:
 1. Navigate to the main page of the repository on GitHub.com.
 2. Click on the "Settings" tab.
 3. In the left sidebar, navigate to the "Security" section and select "Secrets and variables" followed by "Actions".
@@ -110,10 +107,12 @@ After created, the token must be stored in a _repository secret_:
 which will result in a package built and uploaded to https://anaconda.org/neutrons/mypackagename
 
 ### Add an access token to codecov
+
 Follow the instructions in the [Confluence page](https://ornl-neutrons.atlassian.net/wiki/spaces/NDPD/pages/103546883/Coverage+reports)
 to create the access token.
 
-## Packaging building instructions
+Packaging building instructions
+-------------------------------
 
 The default package publishing service is anaconda.
 However, we also support PyPI publishing as well.
@@ -127,17 +126,16 @@ However, we also support PyPI publishing as well.
 5. When doing manual upload test, make sure to use testpypi instead of pypi.
 6. Use `twine upload --repository testpypi dist/*` to upload to testpypi, you will need to specify the testpipy url in your `~/.pypirc`, i.e.
 
-```conf
+``````
 [distutils]
-index-servers =
-    pypi
-    testpypi
+index-servers = pypi, testpypi
 
 [testpypi]
-  repository = https://test.pypi.org/legacy/
-  username = __token__
-  password = YOUR_TESTPYPI_TOKEN
-```
+    repository = https://test.pypi.org/legacy/
+    username = __token__
+    password = YOUR_TESTPYPI_TOKEN
+
+``````
 
 7. Test the package on testpypi with `pip install --index-url https://test.pypi.org/simple/ mypackagename`.
 8. If everything is good, use the Github workflow, `package.yml` to trigger the publishing to PyPI.

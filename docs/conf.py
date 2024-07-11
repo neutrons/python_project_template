@@ -38,6 +38,7 @@ extensions = [
     "sphinx.ext.githubpages",
     "sphinx.ext.intersphinx",
     "sphinx.ext.napoleon",
+    "myst_parser",
 ]
 templates_path = ["_templates"]
 
@@ -61,7 +62,7 @@ exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 # a list of builtin themes.
 #
 html_theme = (
-    "alabaster"  # "sphinx_rtd_theme", please add corresponding package to environment.yml if you want to use it
+    "sphinx_rtd_theme"  # please add corresponding package to environment.yml if you want to use it
 )
 autosummary_generate = True
 

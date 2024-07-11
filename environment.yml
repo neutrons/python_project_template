@@ -26,6 +26,10 @@ dependencies:
   - conda-verify
   - python-build
   - twine  # for uploading to pypi and testpypi
+  # docs
+  - sphinx
+  - sphinx_rtd_theme
+  - myst-parser  # required for parsing markdown files
   # test: list all test dependencies here
   - pytest
   - pytest-cov
