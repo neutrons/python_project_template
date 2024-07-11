@@ -7,7 +7,7 @@ Welcome to python project template docs!
    :caption: Contents:
 
    README
-   
+
 =========================================
 Indices and tables
 =========================================
