@@ -143,3 +143,12 @@ index-servers = pypi, testpypi
 ### Instruction for publish to Anaconda
 
 Publishing to Anaconda is handled via workflow, `package.yml`.
+
+Development environment setup
+-----------------------------
+
+### Build development environment
+
+1. By default, we recommend providing a single `environment.yml` that covers all necessary packages for development.
+2. The runtime dependency should be in `meta.yaml` for anaconda packaging, and `pyproject.toml` for PyPI publishing.
+3. When performing editable install for your feature branch, make sure to use `pip install --no-deps -e .` to ensure that `pip` does not install additional packages from `pyproject.toml` into development environment by accident.
