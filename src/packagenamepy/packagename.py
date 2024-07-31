@@ -14,7 +14,7 @@ import mantid.simpleapi  # noqa: F401, E402 pylint: disable=unused-import, wrong
 
 from packagenamepy.configuration import Configuration  # noqa: E402 pylint: disable=wrong-import-position
 from packagenamepy.mainwindow import MainWindow  # noqa: E402 pylint: disable=wrong-import-position
-from packagenamepy.version import __version__  # noqa: E402 pylint: disable=wrong-import-position
+from packagenamepy import __version__  # noqa: E402 pylint: disable=wrong-import-position
 
 logger = Logger("PACKAGENAME")
 
