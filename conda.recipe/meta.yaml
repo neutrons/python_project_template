@@ -28,9 +28,11 @@ requirements:
   host:
     - python
     - versioningit
+    - setuptools>=42
+    - wheel
 
   build:
-    - setuptools
+    - setuptools>=42
     - versioningit
 
   run:

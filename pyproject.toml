@@ -18,7 +18,7 @@ issues = "https://github.com/neutrons/python_project_template/issues"
 
 [build-system]
 requires = [
-  "setuptools >= 40.6.0",
+  "setuptools>= 42",
   "wheel",
   "toml",
   "versioningit"
