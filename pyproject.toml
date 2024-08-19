@@ -25,9 +25,6 @@ requires = [
 ]
 build-backend = "setuptools.build_meta"
 
-[tool.black]
-line-length = 119
-
 [tool.versioningit.vcs]
 method = "git"
 default-tag = "0.0.1"
