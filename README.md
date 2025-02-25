@@ -113,15 +113,15 @@ However, we also support PyPI publishing as well.
 1. When doing manual upload test, make sure to use testpypi instead of pypi.
 1. Use `twine upload --repository testpypi dist/*` to upload to testpypi, you will need to specify the testpipy url in your `~/.pypirc`, i.e.:
 
-    ```toml
-    [distutils]
-    index-servers = pypi, testpypi
+```toml
+[distutils]
+index-servers = pypi, testpypi
 
-    [testpypi]
-        repository = https://test.pypi.org/legacy/
-        username = __token__
-        password = YOUR_TESTPYPI_TOKEN
-    ```
+[testpypi]
+    repository = https://test.pypi.org/legacy/
+    username = __token__
+    password = YOUR_TESTPYPI_TOKEN
+```
 
 1. Test the package on testpypi with `pip install --index-url https://test.pypi.org/simple/ mypackagename`.
 1. If everything is good, use the Github workflow, `package.yml` to trigger the publishing to PyPI.
