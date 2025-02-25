@@ -12,6 +12,7 @@ repos:
       exclude: "tests/cis_tests/.*"
     - id: trailing-whitespace
       exclude: "tests/cis_tests/.*"
+
 - repo: https://github.com/astral-sh/ruff-pre-commit
   rev: v0.9.6
   hooks:
@@ -20,8 +21,9 @@ repos:
       exclude: "tests/cis_tests/.*"
     - id: ruff-format
       exclude: "tests/cis_tests/.*"
+
 - repo: https://github.com/codespell-project/codespell
   rev: v2.4.1
   hooks:
     - id: codespell
-      exclude: "*.lock"
+      exclude: ".*\\.lock$|tests/cis_tests/.*"
