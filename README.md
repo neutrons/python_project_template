@@ -111,9 +111,9 @@ However, we also support PyPI publishing as well.
 1. At the root of the repo, use `python -m build` to generate the wheel.
 1. Check the wheel with `twine check dist/*`, everything should pass before we move to next step.
 1. When doing manual upload test, make sure to use testpypi instead of pypi.
-1. Use `twine upload --repository testpypi dist/*` to upload to testpypi, you will need to specify the testpipy url in your `~/.pypirc`, i.e.:
+1. Use `twine upload --repository testpypi dist/*` to upload to testpypi, you will need to specify the testpipy url in your `~/.pypirc`, i.e.
 
-```toml
+``````
 [distutils]
 index-servers = pypi, testpypi
 
@@ -121,7 +121,8 @@ index-servers = pypi, testpypi
     repository = https://test.pypi.org/legacy/
     username = __token__
     password = YOUR_TESTPYPI_TOKEN
-```
+
+``````
 
 1. Test the package on testpypi with `pip install --index-url https://test.pypi.org/simple/ mypackagename`.
 1. If everything is good, use the Github workflow, `package.yml` to trigger the publishing to PyPI.
