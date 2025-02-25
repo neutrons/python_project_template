@@ -1811,8 +1811,8 @@ packages:
   timestamp: 1739569648873
 - pypi: .
   name: examplepyapp
-  version: 0.1.0.dev141+d202502251807
-  sha256: 43f8fd3e0e372e2b849717b38d458aec9f137cee20ab8513a1b096e63b15e02f
+  version: 0.1.0.dev142+d202502251825
+  sha256: 304314ceba5ee549057f5b7f23a87c33d0817f59ad46a8b53e8f49acb033b8a2
   requires_dist:
   - bm3d-streak-removal>=0.2.0,<0.3
   - pytest-playwright>=0.7.0,<0.8
