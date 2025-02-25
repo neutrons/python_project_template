@@ -1,5 +1,6 @@
 from packagenamepy import __version__
 
+
 def test_version():
     assert __version__ == "unknown" or "dev" in __version__
     #      ^ conda env will default to "unknown" if not set
