@@ -52,6 +52,7 @@ packagename-cli = "packagenamepy.packagename:main"
 packagenamepy = "packagenamepy.packagename:gui"
 
 [tool.pytest.ini_options]
+addopts = "-v --cov=pleiades --cov-report=term-missing"
 pythonpath = [
   ".", "src", "scripts"
 ]
@@ -90,8 +91,7 @@ clean-conda = { cmd = "sh -c \"find conda.recipe/* ! -name 'meta.yaml' -exec rm 
 build-docs = { cmd = "sphinx-build -b html docs docs/_build", description = "Build the documentation" }
 clean-docs = { cmd = "rm -rf docs/_build", description = "Clean the documentation build artifacts" }
 # Testing tasks
-test = { cmd = "pytest", description = "Run the tests" }
-test-coverage = { cmd = "pytest --cov=examplepyapp", description = "Run the tests with coverage" }
+test = { cmd = "pytest", description = "Run the tests" }  # pytest config above takes care of the arguments
 # Clean all
 clean-all = { description = "Clean all build artifacts", depends-on = ["clean-pypi", "clean-conda", "clean-docs"] }
 
