@@ -162,3 +162,8 @@ cython_debug/
 
 # MacOS files
 .DS_Store
+
+# pixi environments
+.pixi
+*.egg-info
+src/packagenamepy/_version.py
