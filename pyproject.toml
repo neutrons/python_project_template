@@ -3,12 +3,10 @@ name = "examplepyapp"
 description = "Example Python repo for neutrons"
 dynamic = ["version"]
 requires-python = ">=3.10"
-dependencies = [
-  # list all runtime dependencies here
-]
 license = { text = "MIT" }
 keywords = ["neutrons", "example", "python"]
 readme = "README.md"
+dependencies = [ "bm3d-streak-removal>=0.2.0,<0.3", "pytest-playwright>=0.7.0,<0.8"]  # PyPI dependencies
 
 [project.urls]
 homepage = "https://github.com/neutrons/python_project_template/"  # if no homepage, use repo url
@@ -27,7 +25,7 @@ build-backend = "setuptools.build_meta"
 
 [tool.versioningit.vcs]
 method = "git"
-default-tag = "0.0.1"
+default-tag = "0.1.0"
 
 [tool.versioningit.next-version]
 method = "minor"
@@ -54,6 +52,7 @@ packagename-cli = "packagenamepy.packagename:main"
 packagenamepy = "packagenamepy.packagename:gui"
 
 [tool.pytest.ini_options]
+addopts = "-v --cov=packagenamepy --cov-report=term-missing"
 pythonpath = [
   ".", "src", "scripts"
 ]
@@ -68,4 +67,54 @@ markers = [
 line-length = 120
 select = ["A", "ARG","ASYNC","BLE","C90", "E", "F", "I", "N", "UP032", "W"]
 
-# Add additional 3rd party tool configuration here as needed
+# Pixi configuration
+[tool.pixi.project]
+channels = ["conda-forge"]
+platforms = ["linux-64", "osx-arm64"]  # add additional platforms as needed
+
+[tool.pixi.pypi-dependencies]
+examplepyapp = { path = ".", editable = true }
+
+[tool.pixi.tasks]
+# PyPi packaging tasks
+build-pypi = { cmd = "python -m build", description = "Build the package for PyPI" }
+publish-pypi = { cmd = "twine upload dist/*", description = "Publish the package to PyPI", depends-on = ["build-pypi"] }
+clean-pypi = { cmd = "rm -rf dist", description = "Clean the PyPI build artifacts" }
+# Conda packaging tasks
+# NOTE: for build-conda to work locally, you need to set pixi to use detached-environments, i.e. pixi config set detached-environments true
+#       this is because the conda build will complain about build environment in source and refuse to build.
+build-conda = { cmd = "cd conda.recipe && VERSION=$(versioningit ../) conda mambabuild --channel conda-forge --output-folder . .", description = "Build the package for conda" }
+verify-conda = { cmd = "conda verify conda.recipe/noarch/*.tar.bz2", description = "Verify the conda package", depends-on = ["build-conda"] }
+publish-conda = { cmd = "anaconda upload conda.recipe/noarch/*/*.tar.bz2", description = "Publish the package to conda", depends-on = ["verify-conda"] }
+clean-conda = { cmd = "sh -c \"find conda.recipe/* ! -name 'meta.yaml' -exec rm -rf {} +\"", description = "Clean the conda build artifacts" }
+# Documentation tasks
+build-docs = { cmd = "sphinx-build -b html docs docs/_build", description = "Build the documentation" }
+clean-docs = { cmd = "rm -rf docs/_build", description = "Clean the documentation build artifacts" }
+# Testing tasks
+test = { cmd = "pytest", description = "Run the tests" }  # pytest config above takes care of the arguments
+# Clean all
+clean-all = { description = "Clean all build artifacts", depends-on = ["clean-pypi", "clean-conda", "clean-docs"] }
+
+[tool.pixi.dependencies]
+python = ">=3.10"
+versioningit = ">=3.1.2,<4"
+numpy = ">=2.2.3,<3"
+pandas = ">=2.2.3,<3"
+matplotlib = ">=3.10.0,<4"
+jupyterlab = ">=4.3.5,<5"
+ipympl = ">=0.9.6,<0.10"
+pre-commit = ">=4.1.0,<5"
+libmamba = ">=1.5.12,<2"
+libarchive = ">=3.7.7,<4"
+anaconda-client = ">=1.12.3,<2"
+boa = ">=0.17.0,<0.18"
+conda-build = "<4"
+conda-verify = ">=3.4.2,<4"
+python-build = ">=1.2.2.post1,<2"
+twine = ">=6.1.0,<7"
+sphinx = ">=8.2.1,<9"
+sphinx_rtd_theme = ">=3.0.1,<4"
+myst-parser = ">=4.0.1,<5"
+pytest = ">=8.3.4,<9"
+pytest-cov = ">=6.0.0,<7"
+pytest-xdist = ">=3.6.1,<4"
