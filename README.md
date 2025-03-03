@@ -146,12 +146,32 @@ Currently this template repo have both conventional `conda` based environment (`
 
 ### How to use Pixi
 
-1. Install `pixi` by running `curl -fsSL https://pixi.sh/install.sh | bash`
+1. Install `pixi` by running `curl -fsSL https://pixi.sh/install.sh | bash` (or following the instruction on the [official website](https://pixi.sh/))
 1. If planning to build the conda package locally, you need to configure the `pixi` to use the `detached-environments` as `conda build` will fail if the environment is in the source tree (which `pixi` does by default).
     2.1. Run `pixi config set detached-environments true`
     2.2. Make sure to commit the config file `.pixi/config.toml` to the repository (it is ignored by default).
 1. Run `pixi install` to install the dependencies.
 1. Adjust the tasks in `pyproject.toml` to match your project's needs.
+   3.1. Detailed instructions on adding tasks can be found in the [official documentation](https://pixi.sh/latest/features/tasks/).
+   3.2. You can use `pixi run` to see available tasks, and use `pixi run <task-name>` to run a specific task (note: if the selected task has dependencies, they will be run first).
+
+    ```bash
+    ❯ pixi run
+
+    Available tasks:
+            build-conda
+            build-docs
+            build-pypi
+            clean-all
+            clean-conda
+            clean-docs
+            clean-pypi
+            publish-conda
+            publish-pypi
+            test
+            verify-conda
+    ```
+
 1. Remember to remove the GitHub actions that still use `conda` actions.
 
 ### Pixi environment location
