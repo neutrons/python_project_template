@@ -52,19 +52,17 @@ please refer to [pyproject.toml](https://www.python.org/dev/peps/pep-0518/).
 
     8.2 Specify package description at: pyproject.toml#L3
 
-    8.3 Specify package name at: pyproject.toml#L39
+    8.3 Specify package name at: pyproject.toml#L58
 
-    8.4 Specify any terminal entry points (terminal commands) at: pyproject.toml#48.
+    8.4 Specify any terminal entry points (terminal commands) at: pyproject.toml#68.
 
 1. Adjust files for pixi
 
     9.1 After updating your environment file, make sure to run `pixi install` and commit the updated lock file.
 
-    9.2 Specify package name at: pyproject.toml#L76
+    9.2 Specify package name at: pyproject.toml#L116
 
-    9.3 Specify package name at: package_pixi.yaml#32
-
-    9.4 Specify package name at: unittest.yml#47
+    9.3 Specify package name at: unittest.yml#74
 
 In the example, invoking `packagename-cli` in a terminal is equivalent to running the python script `from packagenamepy.packagename.import main; main()`
 

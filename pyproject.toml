@@ -98,7 +98,7 @@ select = ["E", "F", "I"]
 ignore = []
 
 [tool.ruff.lint.isort]
-known-first-party = ["ibeatles"]
+known-first-party = ["packagenamepy"]
 
 [tool.ruff.format]
 quote-style = "double"
