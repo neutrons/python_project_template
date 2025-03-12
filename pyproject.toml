@@ -6,7 +6,26 @@ requires-python = ">=3.10"
 license = { text = "MIT" }
 keywords = ["neutrons", "example", "python"]
 readme = "README.md"
-dependencies = [ "bm3d-streak-removal>=0.2.0,<0.3", "pytest-playwright>=0.7.0,<0.8"]  # PyPI dependencies
+dependencies = [
+  # Dependencies available from both PyPI and conda should be listed here
+  "numpy",
+  "QtPy",
+  "PyQt5",
+  "pyqtgraph",
+  # Dependencies only available from PyPI should be listed here
+  "bm3d-streak-removal>=0.2.0,<0.3",
+  "pytest-playwright>=0.7.0,<0.8",
+]
+
+# We use this section to map conda packages to PyPI packages if they have different names
+# NOTE: prefix-dev provide minimum mapping, and we should add them in explicitly whenever
+#       needed.
+[conda-pypi-map]
+"conda-forge" = """
+{
+  "pyqt": "PyQt5",
+}
+"""
 
 [project.urls]
 homepage = "https://github.com/neutrons/python_project_template/"  # if no homepage, use repo url
@@ -63,17 +82,50 @@ markers = [
     "mymarker: example markers goes here"
 ]
 
+# ------------------ #
+# Ruff configuration #
+# ------------------ #
+# NOTE: We recommend to list the ruff configuration here and let pre-commit read it from here.
+#       This way, the configuration is consistent across all users.
 [tool.ruff]
+target-version = "py311"
 line-length = 120
 select = ["A", "ARG","ASYNC","BLE","C90", "E", "F", "I", "N", "UP032", "W"]
+exclude = ["notebooks/**", "**/*.ipynb"]
 
-# Pixi configuration
+[tool.ruff.lint]
+select = ["E", "F", "I"]
+ignore = []
+
+[tool.ruff.lint.isort]
+known-first-party = ["packagenamepy"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+line-ending = "auto"
+
+# ------------------ #
+# Pixi configuration #
+# ------------------ #
 [tool.pixi.project]
 channels = ["conda-forge"]
 platforms = ["linux-64", "osx-arm64"]  # add additional platforms as needed
 
 [tool.pixi.pypi-dependencies]
 examplepyapp = { path = ".", editable = true }
+
+# The dependencies listed below will be prioritized over the ones
+# listed in the [project] section.
+[tool.pixi.dependencies]
+# This will overwrite the dependencies listed in the [project] section
+numpy = "*"
+scipy = "*"  # specify derivative dependencies here if you need them from conda
+# GUI
+pyqtgraph = "*"
+qt = "*"
+qtpy = "*"
+pyqt = "*"
 
 [tool.pixi.tasks]
 # PyPi packaging tasks
@@ -95,26 +147,36 @@ test = { cmd = "pytest", description = "Run the tests" }  # pytest config above 
 # Clean all
 clean-all = { description = "Clean all build artifacts", depends-on = ["clean-pypi", "clean-conda", "clean-docs"] }
 
-[tool.pixi.dependencies]
-python = ">=3.10"
-versioningit = ">=3.1.2,<4"
-numpy = ">=2.2.3,<3"
-pandas = ">=2.2.3,<3"
-matplotlib = ">=3.10.0,<4"
-jupyterlab = ">=4.3.5,<5"
-ipympl = ">=0.9.6,<0.10"
-pre-commit = ">=4.1.0,<5"
-libmamba = ">=1.5.12,<2"
-libarchive = ">=3.7.7,<4"
-anaconda-client = ">=1.12.3,<2"
-boa = ">=0.17.0,<0.18"
-conda-build = "<4"
-conda-verify = ">=3.4.2,<4"
-python-build = ">=1.2.2.post1,<2"
+[tool.pixi.feature.test.dependencies]
+pytest = "*"
+pytest-cov = "*"
+pytest-xdist = "*"
+pytest-repeat = "*"
+
+[tool.pixi.feature.package.dependencies]
+boa = "*"
+anaconda-client = ">=1.12.3,<2"  # For manual upload to anaconda
+conda-build = "*"
+conda-verify = "*"
+python-build = "*"
 twine = ">=6.1.0,<7"
+
+[tool.pixi.feature.developer.dependencies]
+pip = "*"
+versioningit = "*"
+pre-commit = "*"
+conda-tree = "*"
+ruff = "*"
+
+[tool.pixi.feature.docs.dependencies]
 sphinx = ">=8.2.1,<9"
 sphinx_rtd_theme = ">=3.0.1,<4"
-myst-parser = ">=4.0.1,<5"
-pytest = ">=8.3.4,<9"
-pytest-cov = ">=6.0.0,<7"
-pytest-xdist = ">=3.6.1,<4"
+
+[tool.pixi.feature.jupyter.dependencies]
+jupyterlab = "*"
+ipympl = "*"
+ipywidgets = "*"
+
+[tool.pixi.environments]
+default = {features = ["test", "package", "docs", "developer"], solve-group = "default"}
+jupyter = {features = ["developer", "jupyter"], solve-group = "jupyter"}
