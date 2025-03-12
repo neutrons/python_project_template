@@ -115,7 +115,7 @@ platforms = ["linux-64", "osx-arm64"]  # add additional platforms as needed
 [tool.pixi.pypi-dependencies]
 examplepyapp = { path = ".", editable = true }
 
-# The denpendencies listed below will be prioritized over the ones
+# The dependencies listed below will be prioritized over the ones
 # listed in the [project] section.
 [tool.pixi.dependencies]
 # This will overwrite the dependencies listed in the [project] section
