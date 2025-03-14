@@ -17,7 +17,7 @@ jobs:
       - uses: conda-incubator/setup-miniconda@v3
         with:
           auto-update-conda: true
-          channels: conda-forge,defaults
+          channels: conda-forge
           use-mamba: true
           environment-file: environment.yml
           activate-environment: test
@@ -59,7 +59,7 @@ jobs:
       - uses: conda-incubator/setup-miniconda@v3
         with:
           auto-update-conda: true
-          channels: conda-forge,defaults
+          channels: conda-forge
           use-mamba: true
           environment-file: environment.yml
           activate-environment: test
