@@ -2374,8 +2374,8 @@ packages:
   timestamp: 1733217860944
 - pypi: .
   name: examplepyapp
-  version: 0.2.0.dev171+d202503201444
-  sha256: f6316ed262a8842001abe5d65bc66beb1d05507c919e0730eb5200633f687355
+  version: 0.2.0.dev172
+  sha256: 2818b8fc348d1839923e22841178451e0b7fb47d1a5ccd8cb6b04b270c3a2460
   requires_dist:
   - numpy
   - qtpy
