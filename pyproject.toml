@@ -155,7 +155,7 @@ pytest-repeat = "*"
 
 [tool.pixi.feature.package.dependencies]
 boa = "*"
-anaconda-client = ">=1.12.3,<2"  # For manual upload to anaconda
+anaconda-client = ">=1.13.0,<2"
 conda-build = "*"
 conda-verify = "*"
 python-build = "*"
