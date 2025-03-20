@@ -138,7 +138,7 @@ index-servers = pypi, testpypi
 ### Instruction for publish to Anaconda
 
 Publishing to Anaconda is handled via workflow, `package.yml`.
-If your target channel is not `mantid-ornl`, make sure change it in the `package_pixi.yml` file.
+If your target channel is not `neutrons`, make sure change it in the `package_pixi.yml` file.
 
 ## Development environment setup
 
