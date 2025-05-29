@@ -2653,8 +2653,8 @@ packages:
   timestamp: 1733217860944
 - pypi: ./
   name: examplepyapp
-  version: 0.2.0.dev200
-  sha256: e0f3816ded5181abbedf5e58dcac43d6772010d73efac3062cd4462c9398adfd
+  version: 0.2.0.dev203+d202505291805
+  sha256: 07241cc85f8a8db798d78d1808b94e6074eb166b371641c5c579a524ca05c28b
   requires_dist:
   - bm3d-streak-removal>=0.2.0,<0.3
   - numpy
@@ -2662,6 +2662,8 @@ packages:
   - pyqtgraph
   - pytest-playwright>=0.7.0,<0.8
   - qtpy
+  - sphinx-rtd-theme>=3.0.1,<4 ; extra == 'docs'
+  - sphinx>=8.2.1,<9 ; extra == 'docs'
   requires_python: '>=3.10'
   editable: true
 - conda: https://conda.anaconda.org/conda-forge/noarch/exceptiongroup-1.3.0-pyhd8ed1ab_0.conda

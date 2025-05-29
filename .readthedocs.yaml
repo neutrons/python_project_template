@@ -4,13 +4,6 @@ build:
   os: "ubuntu-22.04"
   tools:
     python: "3.11"
-  jobs:
-    pre_create_environment:
-      - curl -fsSL https://pixi.sh/install.sh | bash
-      - echo 'export PATH="$HOME/.pixi/bin:$PATH"' >> $BASH_ENV
-    post_create_environment:
-      - pixi install
-      - pixi shell-hook >> $BASH_ENV
 
 sphinx:
   builder: html
