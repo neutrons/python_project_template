@@ -175,6 +175,7 @@ backend = { name = "pixi-build-python", version = "0.1.*" }
 # PyPi packaging tasks
 build-pypi = { cmd = "python -m build", description = "Build the package for PyPI" }
 publish-pypi = { cmd = "twine upload dist/*", description = "Publish the package to PyPI", depends-on = ["build-pypi"] }
+publish-pypi-test = { cmd = "twine upload --repository testpypi dist/*", description = "Publish the package to TestPyPI", depends-on = ["build-pypi"] }
 clean-pypi = { cmd = "rm -rf dist", description = "Clean the PyPI build artifacts" }
 build-conda-command = { cmd = "pixi build", description = "Build the conda package command" }
 build-conda = { description = "Build the conda package", depends-on = ["sync-version", "build-conda-command", "reset-version"] }
