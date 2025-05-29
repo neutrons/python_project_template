@@ -84,7 +84,7 @@ refer to [Choose an open source license](https://choosealicense.com/).
 
 1. Adjust the GitHub Actions workflows for CI/CD to align with Pixi-only packaging. For more information about GitHub Actions, please refer to [GitHub Actions](https://docs.github.com/en/actions).
 
-    - Ensure that `.github/workflows/package.yml` uses only `pixi run` commands for all build and publish steps.
+    - Ensure that `.github/workflows/package.yaml` uses only `pixi run` commands for all build and publish steps.
 
     - Validate that the following Pixi tasks are correctly invoked:
 
@@ -202,11 +202,11 @@ Both PyPI and Conda packages are supported. All build and publishing steps are d
    pip install --index-url https://test.pypi.org/simple/ examplepyapp
    ```
 
-7. When ready, trigger the GitHub Action (`package.yml`) to upload to PyPI.
+7. When ready, trigger the GitHub Action (`package.yaml`) to upload to PyPI.
 
 ### Publish to Anaconda (Conda)
 
-1. Ensure the target channel is correct in `.github/workflows/package.yml`.
+1. Ensure the target channel is correct in `.github/workflows/package.yaml`.
 2. Run the Pixi build:
 
    ```bash
