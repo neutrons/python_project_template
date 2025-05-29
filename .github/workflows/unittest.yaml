@@ -27,5 +27,5 @@ jobs:
           token: ${{ secrets.CODECOV_TOKEN }}
       - name: build conda package
         run: |
-          echo "build and verify conda package"
-          pixi run verify-conda
+          echo "build conda package"
+          pixi run build-conda
