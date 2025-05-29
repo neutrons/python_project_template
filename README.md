@@ -114,7 +114,7 @@ please refer to [pyproject.toml](https://www.python.org/dev/peps/pep-0518/).
 
     - Specify package name at: pyproject.toml#L65
 
-        > In the example, invoking `packagename-cli` in a terminal is equivalent to running the python script `from packagenamepy.packagename.import main; main()`
+        > In the example, invoking `packagename-cli` in a terminal is equivalent to running the python script `from packagenamepy.packagename import main; main()`
 
     - Projects will use a  single `pyproject.toml` file to manage all the project metadata, including the project name, version, author, license, etc.
 
