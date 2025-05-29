@@ -36,6 +36,8 @@ packagenamepy = "packagenamepy.packagename:gui"
 docs = [
   "sphinx>=8.2.1,<9",
   "sphinx_rtd_theme>=3.0.1,<4",
+  "versioningit",
+  "myst_parser",
 ]
 
 # We use this section to map conda packages to PyPI packages if they have different names
