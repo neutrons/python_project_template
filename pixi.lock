@@ -2652,8 +2652,8 @@ packages:
   timestamp: 1733217860944
 - pypi: ./
   name: examplepyapp
-  version: 0.2.0.dev194+d202505291552
-  sha256: c4f8d6d456c2772b7cbcd521e8d859822f960be5572ac13d51a965b3c8118202
+  version: 0.2.0.dev195+d202505291611
+  sha256: 5f285bc6af7852f932d3b126f63431aeb9b6a0d5ef7f596e1ab077777c96b97a
   requires_dist:
   - bm3d-streak-removal>=0.2.0,<0.3
   - numpy
@@ -6663,7 +6663,7 @@ packages:
   - python >=3.9
   license: ISC
   purls:
-  - pkg:pypi/pexpect?source=compressed-mapping
+  - pkg:pypi/pexpect?source=hash-mapping
   size: 53561
   timestamp: 1733302019362
 - conda: https://conda.anaconda.org/conda-forge/noarch/pickleshare-0.7.5-pyhd8ed1ab_1004.conda
