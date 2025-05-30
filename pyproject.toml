@@ -181,7 +181,7 @@ backend = { name = "pixi-build-python", version = "0.1.*" }
 # --------------- #
 [tool.pixi.tasks]
 # PyPi packaging tasks
-build-pypi = { cmd = "python -m build", description = "Build the package for PyPI" }
+build-pypi = { cmd = "hatch build", description = "Build the package for PyPI" }
 publish-pypi = { cmd = "twine upload dist/*", description = "Publish the package to PyPI", depends-on = ["build-pypi"] }
 publish-pypi-test = { cmd = "twine upload --repository testpypi dist/*", description = "Publish the package to TestPyPI", depends-on = ["build-pypi"] }
 clean-pypi = { cmd = "rm -rf dist", description = "Clean the PyPI build artifacts" }
@@ -211,10 +211,8 @@ pytest-repeat = "*"
 [tool.pixi.feature.package.dependencies]
 boa = "*"
 anaconda-client = ">=1.13.0,<2"
-conda-build = "*"
-conda-verify = "*"
-python-build = "*"
 twine = ">=6.1.0,<7"
+versioningit = "*"
 
 [tool.pixi.feature.developer.dependencies]
 pip = "*"
