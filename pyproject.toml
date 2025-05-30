@@ -213,6 +213,7 @@ boa = "*"
 anaconda-client = ">=1.13.0,<2"
 twine = ">=6.1.0,<7"
 versioningit = "*"
+hatch = "*"
 
 [tool.pixi.feature.developer.dependencies]
 pip = "*"
