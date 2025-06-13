@@ -168,6 +168,7 @@ pyqtgraph = "*"
 qt = "*"
 qtpy = "*"
 pyqt = "*"
+pip-audit = ">=2.9.0,<3"
 
 [tool.pixi.package]
 name = "examplepyapp"
