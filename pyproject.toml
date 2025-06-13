@@ -11,7 +11,7 @@ keywords = ["neutrons", "example", "python"]
 readme = "README.md"
 dependencies = [
   # Dependencies available from both PyPI and conda should be listed here
-  "numpy",
+  "numpy>=2.2,<3",
   "QtPy",
   "PyQt5",
   "pyqtgraph",
@@ -168,6 +168,7 @@ pyqtgraph = "*"
 qt = "*"
 qtpy = "*"
 pyqt = "*"
+pip-audit = ">=2.9.0,<3"
 
 [tool.pixi.package]
 name = "examplepyapp"
@@ -209,7 +210,6 @@ pytest-xdist = "*"
 pytest-repeat = "*"
 
 [tool.pixi.feature.package.dependencies]
-boa = "*"
 anaconda-client = ">=1.13.0,<2"
 twine = ">=6.1.0,<7"
 versioningit = "*"
@@ -219,7 +219,6 @@ hatch = "*"
 pip = "*"
 versioningit = "*"
 pre-commit = "*"
-conda-tree = "*"
 ruff = "*"
 
 [tool.pixi.feature.docs.dependencies]
