@@ -210,7 +210,6 @@ pytest-xdist = "*"
 pytest-repeat = "*"
 
 [tool.pixi.feature.package.dependencies]
-boa = "*"
 anaconda-client = ">=1.13.0,<2"
 twine = ">=6.1.0,<7"
 versioningit = "*"
@@ -220,7 +219,6 @@ hatch = "*"
 pip = "*"
 versioningit = "*"
 pre-commit = "*"
-conda-tree = "*"
 ruff = "*"
 
 [tool.pixi.feature.docs.dependencies]
