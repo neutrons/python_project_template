@@ -1,3 +1,9 @@
+ci:
+  # Leave pip-audit to only run locally and not in CI
+  # pre-commit.ci does not allow network calls
+  skip: [pip-audit]
+
+exclude: "^pixi.lock$"
 repos:
 - repo: https://github.com/pre-commit/pre-commit-hooks
   rev: v5.0.0
@@ -13,10 +19,15 @@ repos:
     - id: trailing-whitespace
       exclude: "tests/cis_tests/.*"
 
+- repo: https://github.com/pypa/pip-audit
+  rev: v2.9.0
+  hooks:
+    - id: pip-audit
+
 - repo: https://github.com/astral-sh/ruff-pre-commit
   rev: v0.11.12
   hooks:
-    - id: ruff
+    - id: ruff-check
       args: [--fix, --exit-non-zero-on-fix]
       exclude: "tests/cis_tests/.*"
     - id: ruff-format
@@ -26,4 +37,4 @@ repos:
   rev: v2.4.1
   hooks:
     - id: codespell
-      exclude: ".*\\.lock$|tests/cis_tests/.*"
+      exclude: "tests/cis_tests/.*"
