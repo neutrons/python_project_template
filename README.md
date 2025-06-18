@@ -164,6 +164,11 @@ to create the access token.
 
 Both PyPI and Conda packages are supported. All build and publishing steps are defined in Pixi tasks.
 
+Note that if your project is not being built and published to PypI, you can safely modify the `pyproject.toml`
+to remove any `[tool.hatch.*]` sections, pixi tasks related to pypi, and the `hatch` dependency.
+
+Similarly, if you are not publishing to conda, you can remove any related dependencies, configurations, and tasks.
+
 ### Publish to PyPI
 
 1. Ensure you have access to the project on PyPI.
