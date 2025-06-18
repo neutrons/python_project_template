@@ -31,4 +31,4 @@ jobs:
       - name: build conda package
         run: |
           echo "build conda package"
-          pixi run build-conda
+          pixi run conda-build
