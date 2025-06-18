@@ -104,11 +104,11 @@ This ensures your environment remains clean and all tasks are reproducible.
 1.  Adjust `pyproject.toml` to match your project. For more information about `pyproject.toml`,
     please refer to [pyproject.toml](https://www.python.org/dev/peps/pep-0518/).
 
-      - Specify package name at: pyproject.toml#L5
+    - Specify package name at: pyproject.toml#L5
 
-      - Specify package description at: pyproject.toml#L6
+    - Specify package description at: pyproject.toml#L6
 
-      - Specify any terminal entry points (terminal commands) at: pyproject.toml#30.
+    - Specify any terminal entry points (terminal commands) at: pyproject.toml#30.
 
 1.  Adjust files for pixi
 
