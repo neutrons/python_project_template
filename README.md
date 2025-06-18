@@ -1,6 +1,6 @@
 # Python Project Template (examplepyapp)
 
-This repository contains a modern Python project managed entirely with [Pixi](https://pixi.sh/), a reproducible and declarative environment manager.  
+This repository contains a modern Python project managed entirely with [Pixi](https://pixi.sh/), a reproducible and declarative environment manager.
 All build and packaging metadata is consolidated in a single `pyproject.toml` file, following modern Python packaging standards.
 
 ## Getting Started
@@ -249,8 +249,8 @@ Both PyPI and Conda packages are supported. All build and publishing steps are d
    pixi shell
    ```
 
-1. If you are using VSCode as your IDE, we recommend to start code with `pixi run code .` to ensure the correct environment is inherited by the IDE.  
-   Alternatively, you can specify the Python interpreter path using `Ctrl + Shift + P` and searching for "Python: Select Interpreter",  
+1. If you are using VSCode as your IDE, we recommend to start code with `pixi run code .` to ensure the correct environment is inherited by the IDE.
+   Alternatively, you can specify the Python interpreter path using `Ctrl + Shift + P` and searching for "Python: Select Interpreter",
    or manually editing the `.vscode/settings.json` file to set the Python interpreter path:
 
    ```json
