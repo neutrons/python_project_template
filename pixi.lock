@@ -2604,8 +2604,8 @@ packages:
   timestamp: 1733208220327
 - pypi: ./
   name: examplepyapp
-  version: 0.2.0.dev195+d202506171908
-  sha256: e9b4e7e6514faab137aa9c730fc2a94b1995c70d973c4c3e71b0318c8aa492e7
+  version: 0.2.0.dev196+d202506181540
+  sha256: 0d1e120dbed68b36440d50a1c1265ae5afe64c2219d0cc73c1a99e6477cdd32c
   requires_dist:
   - bm3d-streak-removal>=0.2.0,<0.3
   - numpy

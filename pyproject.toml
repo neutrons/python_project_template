@@ -1,6 +1,6 @@
-# ---------------- #
-# Project Metadata #
-# ---------------- #
+########################
+### Project Metadata ###
+########################
 [project]
 name = "examplepyapp"
 description = "Example Python repo for neutrons"
@@ -9,6 +9,7 @@ requires-python = ">=3.10"
 license = { text = "MIT" }
 keywords = ["neutrons", "example", "python"]
 readme = "README.md"
+
 dependencies = [
   # Dependencies available from both PyPI and conda
   "numpy",
@@ -20,18 +21,6 @@ dependencies = [
   "pytest-playwright>=0.7.0,<0.8",
 ]
 
-[project.urls]
-homepage = "https://github.com/neutrons/python_project_template/"
-repository = "https://github.com/neutrons/python_project_template/"
-# documentation = add_url_to_readthedoc_here
-issues = "https://github.com/neutrons/python_project_template/issues"
-
-[project.scripts]
-packagename-cli = "packagenamepy.packagename:main"
-
-[project.gui-scripts]
-packagenamepy = "packagenamepy.packagename:gui"
-
 [project.optional-dependencies]
 docs = [
   "sphinx>=8.2.1,<9",
@@ -40,9 +29,21 @@ docs = [
   "myst_parser",
 ]
 
-# ------------ #
-# Build Config #
-# ------------ #
+[project.scripts]
+packagename-cli = "packagenamepy.packagename:main"
+
+[project.gui-scripts]
+packagenamepy = "packagenamepy.packagename:gui"
+
+[project.urls]
+homepage = "https://github.com/neutrons/python_project_template/"
+repository = "https://github.com/neutrons/python_project_template/"
+# documentation = add_url_to_readthedoc_here
+issues = "https://github.com/neutrons/python_project_template/issues"
+
+####################
+### Build config ###
+####################
 
 [build-system]
 build-backend = "hatchling.build"
@@ -82,9 +83,9 @@ distance-dirty = "{next_version}.dev{distance}+d{build_date:%Y%m%d%H%M}"
 [tool.versioningit.write]
 file = "src/packagenamepy/_version.py"
 
-# ---------------- #
-# Pixi Config      #
-# ---------------- #
+###################
+### Pixi config ###
+###################
 
 [tool.pixi.workspace]
 preview = ["pixi-build"] # Required until the build feature becomes stable
@@ -129,9 +130,7 @@ version = "0.0.0"     # placeholder, overwritten by sync-version
 [tool.pixi.package.build]
 backend = { name = "pixi-build-python", version = "0.1.*" }
 
-# ------------------------------ #
-# Pixi Features and Environments #
-# ------------------------------ #
+# Environments and Features
 
 [tool.pixi.environments]
 default = { features = [
@@ -171,9 +170,6 @@ jupyterlab = "*"
 ipympl = "*"
 ipywidgets = "*"
 
-# --------------- #
-# Pixi Tasks      #
-# --------------- #
 [tool.pixi.tasks]
 # Documentation
 build-docs = { cmd = 'sphinx-build -b html docs docs/_build', description = "Build documentation" }
@@ -183,19 +179,19 @@ test = { description = "Run the test suite", cmd = "pytest" }
 # Packaging
 pypi-build = { cmd = "hatch build", description = "Build the package for PyPI" }
 pypi-publish = { cmd = "twine upload dist/*", description = "Publish the package to PyPI", depends-on = [
-    "pypi-build",
+  "pypi-build",
 ] }
 pypi-publish-test = { cmd = "twine upload --repository testpypi dist/*", description = "Publish the package to TestPyPI", depends-on = [
-    "pypi-build",
+  "pypi-build",
 ] }
 conda-build-command = { cmd = "pixi build", description = "Build the conda package command" }
 conda-build = { description = "Build the conda package", depends-on = [
-    "sync-version",
-    "conda-build-command",
-    "reset-version",
+  "sync-version",
+  "conda-build-command",
+  "reset-version",
 ] }
 conda-publish = { cmd = "anaconda upload *.conda", description = "Publish the .conda package to anaconda.org", depends-on = [
-    "conda-build",
+  "conda-build",
 ] }
 # Misc
 clean = { cmd = 'rm -rf .pytest_cache .ruff_cache **/*.egg-info **/dist **/__pycache__', description = "Clean up various caches and build artifacts" }
@@ -203,18 +199,18 @@ clean-conda = { cmd = "rm -f *.conda", description = "Clean the local .conda bui
 clean-docs = { cmd = "rm -rf docs/_build", description = "Clean up documentation build artifacts" }
 clean-pypi = { cmd = "rm -rf dist", description = "Clean the PyPI build artifacts" }
 clean-all = { description = "Clean all artifacts", depends-on = [
-    "clean",
-    "clean-conda",
-    "clean-docs",
-    "clean-pypi",
+  "clean",
+  "clean-conda",
+  "clean-docs",
+  "clean-pypi",
 ] }
 sync-version = { cmd = 'version=$(python -m versioningit); toml set tool.pixi.package.version "$version" --toml-path pyproject.toml', description = "Sync pyproject.toml version with Git version" }
 reset-version = { cmd = "toml set tool.pixi.package.version \"0.0.0\" --toml-path pyproject.toml", description = "Reset the package version to 0.0.0" }
 conda-builder = { cmd = "pixi build", description = "Command that creates the conda package" }
 
-# ------------- #
-# Pytest Config #
-# ------------- #
+##############
+### Pytest ###
+##############
 
 [tool.pytest.ini_options]
 addopts = "-v --cov=packagenamepy --cov-report=term-missing"
@@ -231,9 +227,9 @@ norecursedirs = [
 ]
 markers = ["mymarker: example markers goes here"]
 
-# ---------------- #
-# Ruff Linting     #
-# ---------------- #
+############
+### Ruff ###
+############
 
 [tool.ruff]
 target-version = "py311"
