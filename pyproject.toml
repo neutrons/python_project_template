@@ -11,8 +11,8 @@ keywords = ["neutrons", "example", "python"]
 readme = "README.md"
 
 dependencies = [
-  # Dependencies available from both PyPI and conda
-  "numpy",
+  # Dependencies available from both PyPI and conda should be listed here
+  "numpy>=2.2,<3",
   "QtPy",
   "PyQt5",
   "pyqtgraph",
