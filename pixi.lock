@@ -2095,11 +2095,11 @@ packages:
   timestamp: 1733208220327
 - pypi: ./
   name: examplepyapp
-  version: 0.2.0.dev197+d202506181616
-  sha256: 7f24c87418be29bdefac035e686972331fbbcc28dd7bc735333954082589f47a
+  version: 0.2.0.dev203
+  sha256: 3eb9547b4175af8cf4ce56fc9d36e231e2a641f93acdc279f9fbff71dab62f45
   requires_dist:
   - bm3d-streak-removal>=0.2.0,<0.3
-  - numpy
+  - numpy>=2.2,<3
   - pyqt5
   - pyqtgraph
   - pytest-playwright>=0.7.0,<0.8
