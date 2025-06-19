@@ -13,15 +13,19 @@ jobs:
   pixi-update:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - name: Set up pixi
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pixi
         uses: prefix-dev/setup-pixi@v0.8.10
         with:
           run-install: false
+
       - name: Update lockfiles
         run: |
           set -o pipefail
           pixi update --json | pixi exec pixi-diff-to-markdown >> diff.md
+
       - name: Create pull request
         uses: peter-evans/create-pull-request@v7
         with:
@@ -30,7 +34,7 @@ jobs:
           title: Update pixi lockfile
           body-path: diff.md
           branch: update-pixi
-          base: main  # change this to the default branch of your repository
+          base: main # change this to the default branch of your repository
           labels: pixi
           delete-branch: true
           add-paths: pixi.lock

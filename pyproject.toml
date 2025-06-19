@@ -1,6 +1,6 @@
-# ---------------- #
-# Project Metadata #
-# ---------------- #
+########################
+### Project Metadata ###
+########################
 [project]
 name = "examplepyapp"
 description = "Example Python repo for neutrons"
@@ -9,28 +9,17 @@ requires-python = ">=3.10"
 license = { text = "MIT" }
 keywords = ["neutrons", "example", "python"]
 readme = "README.md"
+
 dependencies = [
   # Dependencies available from both PyPI and conda should be listed here
   "numpy>=2.2,<3",
   "QtPy",
   "PyQt5",
   "pyqtgraph",
-  # Dependencies only available from PyPI should be listed here
+  # Dependencies only available from PyPI
   "bm3d-streak-removal>=0.2.0,<0.3",
   "pytest-playwright>=0.7.0,<0.8",
 ]
-
-[project.urls]
-homepage = "https://github.com/neutrons/python_project_template/"  # if no homepage, use repo url
-repository = "https://github.com/neutrons/python_project_template/"
-# documentation = add_url_to_readthedoc_here
-issues = "https://github.com/neutrons/python_project_template/issues"
-
-[project.scripts]
-packagename-cli = "packagenamepy.packagename:main"
-
-[project.gui-scripts]
-packagenamepy = "packagenamepy.packagename:gui"
 
 [project.optional-dependencies]
 docs = [
@@ -40,23 +29,26 @@ docs = [
   "myst_parser",
 ]
 
-# We use this section to map conda packages to PyPI packages if they have different names
-# NOTE: prefix-dev provide minimum mapping, and we should add them in explicitly whenever
-#       needed.
-[conda-pypi-map]
-"conda-forge" = """
-{
-  "pyqt": "PyQt5",
-}
-"""
+[project.scripts]
+packagename-cli = "packagenamepy.packagename:main"
+
+[project.gui-scripts]
+packagenamepy = "packagenamepy.packagename:gui"
+
+[project.urls]
+homepage = "https://github.com/neutrons/python_project_template/"
+repository = "https://github.com/neutrons/python_project_template/"
+# documentation = add_url_to_readthedoc_here
+issues = "https://github.com/neutrons/python_project_template/issues"
+
+####################
+### Build config ###
+####################
 
 [build-system]
 build-backend = "hatchling.build"
 requires = ["hatchling", "versioningit"]
 
-# ---------------------------- #
-# Hatch & Versioningit Config #
-# ---------------------------- #
 [tool.hatch.version]
 source = "versioningit"
 
@@ -70,7 +62,7 @@ artifacts = [
   "src/packagenamepy/_version.py",
   "src/packagenamepy/**/*.yml",
   "src/packagenamepy/**/*.yaml",
-  "src/packagenamepy/**/*.ini"
+  "src/packagenamepy/**/*.ini",
 ]
 
 [tool.hatch.build.targets.wheel]
@@ -91,28 +83,156 @@ distance-dirty = "{next_version}.dev{distance}+d{build_date:%Y%m%d%H%M}"
 [tool.versioningit.write]
 file = "src/packagenamepy/_version.py"
 
-# ---------------- #
-# Pytest Config    #
-# ---------------- #
+###################
+### Pixi config ###
+###################
+
+[tool.pixi.workspace]
+preview = ["pixi-build"] # Required until the build feature becomes stable
+channels = ["conda-forge", "https://prefix.dev/pixi-build-backends"]
+platforms = ["linux-64", "osx-arm64"] # add additional platforms as needed
+# If you don't need to map PyPI dependencies to conda, you can remove the `conda-pypi-map` section and the `pixi-mapping.json` file.
+conda-pypi-map = { "conda-forge" = "pixi-mapping.json" }
+
+[tool.pixi.pypi-dependencies]
+examplepyapp = { path = ".", editable = true }
+
+# These dependencies take priority over those listed in the [project] section.
+[tool.pixi.package.host-dependencies]
+hatchling = "*"
+versioningit = "*"
+
+[tool.pixi.package.run-dependencies]
+python = ">=3.10"
+numpy = "*"
+QtPy = "*"
+PyQt5 = "*"
+pyqtgraph = "*"
+
+[tool.pixi.dependencies]
+# These will override the dependencies listed in the [project] section
+numpy = "*"
+scipy = "*" # specify derivative dependencies here if you need them from conda
+# GUI
+pyqtgraph = "*"
+qt = "*"
+qtpy = "*"
+pyqt = "*"
+
+[tool.pixi.package]
+name = "examplepyapp"
+version = "0.0.0"     # placeholder, overwritten by sync-version
+
+[tool.pixi.package.build]
+backend = { name = "pixi-build-python", version = "0.1.*" }
+
+# Environments and Features
+
+[tool.pixi.environments]
+default = { features = [
+  "docs",
+  "developer",
+  "package",
+  "test",
+], solve-group = "default" }
+jupyter = { features = ["developer", "jupyter"], solve-group = "jupyter" }
+
+[tool.pixi.feature.test.dependencies]
+pytest = "*"
+pytest-cov = "*"
+pytest-repeat = "*"
+pytest-xdist = "*"
+
+[tool.pixi.feature.package.dependencies]
+anaconda-client = ">=1.13.0,<2"
+twine = ">=6.1.0,<7"
+versioningit = "*"
+hatch = "*"
+
+[tool.pixi.feature.package.pypi-dependencies]
+toml-cli = "*"
+
+[tool.pixi.feature.developer.dependencies]
+pip = "*"
+pip-audit = "*"
+pre-commit = "*"
+ruff = "*"
+versioningit = "*"
+
+[tool.pixi.feature.docs.dependencies]
+sphinx = ">=8.2.1,<9"
+sphinx_rtd_theme = ">=3.0.1,<4"
+
+[tool.pixi.feature.jupyter.dependencies]
+jupyterlab = "*"
+ipympl = "*"
+ipywidgets = "*"
+
+[tool.pixi.tasks]
+# Documentation
+build-docs = { cmd = 'sphinx-build -b html docs docs/_build', description = "Build documentation" }
+test-docs = { cmd = "sphinx-build -M doctest docs docs/_build", description = "Test building the documentation" }
+# Testing
+test = { description = "Run the test suite", cmd = "pytest" }
+# Packaging
+pypi-build = { cmd = "hatch build", description = "Build the package for PyPI" }
+pypi-publish = { cmd = "twine upload dist/*", description = "Publish the package to PyPI", depends-on = [
+  "pypi-build",
+] }
+pypi-publish-test = { cmd = "twine upload --repository testpypi dist/*", description = "Publish the package to TestPyPI", depends-on = [
+  "pypi-build",
+] }
+conda-build-command = { cmd = "pixi build", description = "Build the conda package command" }
+conda-build = { description = "Build the conda package", depends-on = [
+  "sync-version",
+  "conda-build-command",
+  "reset-version",
+] }
+conda-publish = { cmd = "anaconda upload *.conda", description = "Publish the .conda package to anaconda.org", depends-on = [
+  "conda-build",
+] }
+# Misc
+audit-deps = { cmd = "pip-audit --local -s osv", description = "Audit the package dependencies for vulnerabilities" }
+clean = { cmd = 'rm -rf .pytest_cache .ruff_cache **/*.egg-info **/dist **/__pycache__', description = "Clean up various caches and build artifacts" }
+clean-conda = { cmd = "rm -f *.conda", description = "Clean the local .conda build artifacts" }
+clean-docs = { cmd = "rm -rf docs/_build", description = "Clean up documentation build artifacts" }
+clean-pypi = { cmd = "rm -rf dist", description = "Clean the PyPI build artifacts" }
+clean-all = { description = "Clean all artifacts", depends-on = [
+  "clean",
+  "clean-conda",
+  "clean-docs",
+  "clean-pypi",
+] }
+sync-version = { cmd = 'version=$(python -m versioningit); toml set tool.pixi.package.version "$version" --toml-path pyproject.toml', description = "Sync pyproject.toml version with Git version" }
+reset-version = { cmd = "toml set tool.pixi.package.version \"0.0.0\" --toml-path pyproject.toml", description = "Reset the package version to 0.0.0" }
+
+##############
+### Pytest ###
+##############
+
 [tool.pytest.ini_options]
 addopts = "-v --cov=packagenamepy --cov-report=term-missing"
-pythonpath = [
-  ".", "src", "scripts"
-]
+pythonpath = [".", "src", "scripts"]
 testpaths = ["tests"]
 python_files = ["test*.py"]
-norecursedirs = [".git", "tmp*", "_tmp*", "__pycache__", "*dataset*", "*data_set*"]
-markers = [
-    "mymarker: example markers goes here"
+norecursedirs = [
+  ".git",
+  "tmp*",
+  "_tmp*",
+  "__pycache__",
+  "*dataset*",
+  "*data_set*",
 ]
+markers = ["mymarker: example markers goes here"]
 
-# ---------------- #
-# Ruff Linting     #
-# ---------------- #
+############
+### Ruff ###
+############
+
 [tool.ruff]
 target-version = "py311"
 line-length = 120
-select = ["A", "ARG","ASYNC","BLE","C90", "E", "F", "I", "N", "UP032", "W"]
+select = ["A", "ARG", "ASYNC", "BLE", "C90", "E", "F", "I", "N", "UP032", "W"]
 exclude = ["notebooks/**", "**/*.ipynb"]
 
 [tool.ruff.lint]
@@ -126,106 +246,3 @@ known-first-party = ["packagenamepy"]
 quote-style = "double"
 indent-style = "space"
 line-ending = "auto"
-
-# ---------------- #
-# Pixi Config      #
-# ---------------- #
-[tool.pixi.workspace]
-preview = ["pixi-build"]
-channels = [
-  "conda-forge",
-  "https://prefix.dev/pixi-build-backends"
-]
-platforms = ["linux-64", "osx-arm64"]  # add additional platforms as needed
-
-[tool.pixi.environments]
-default = {features = ["test", "package", "docs", "developer"], solve-group = "default"}
-jupyter = {features = ["developer", "jupyter"], solve-group = "jupyter"}
-
-[tool.pixi.pypi-dependencies]
-examplepyapp = { path = ".", editable = true }
-toml-cli = "*"
-
-# The dependencies listed below will be prioritized over the ones
-# listed in the [project] section.
-[tool.pixi.package.host-dependencies]
-hatchling = "*"
-versioningit = "*"
-
-[tool.pixi.package.run-dependencies]
-python = ">=3.10"
-numpy = "*"
-QtPy = "*"
-PyQt5 = "*"
-pyqtgraph = "*"
-
-[tool.pixi.dependencies]
-# This will overwrite the dependencies listed in the [project] section
-numpy = "*"
-scipy = "*"  # specify derivative dependencies here if you need them from conda
-# GUI
-pyqtgraph = "*"
-qt = "*"
-qtpy = "*"
-pyqt = "*"
-pip-audit = ">=2.9.0,<3"
-
-[tool.pixi.package]
-name = "examplepyapp"
-version = "0.0.0"  # placeholder, overwritten by sync-version
-
-[tool.pixi.package.build]
-backend = { name = "pixi-build-python", version = "0.1.*" }
-
-# --------------- #
-# Pixi Tasks      #
-# --------------- #
-[tool.pixi.tasks]
-# PyPi packaging tasks
-build-pypi = { cmd = "hatch build", description = "Build the package for PyPI" }
-publish-pypi = { cmd = "twine upload dist/*", description = "Publish the package to PyPI", depends-on = ["build-pypi"] }
-publish-pypi-test = { cmd = "twine upload --repository testpypi dist/*", description = "Publish the package to TestPyPI", depends-on = ["build-pypi"] }
-clean-pypi = { cmd = "rm -rf dist", description = "Clean the PyPI build artifacts" }
-build-conda-command = { cmd = "pixi build", description = "Build the conda package command" }
-build-conda = { description = "Build the conda package", depends-on = ["sync-version", "build-conda-command", "reset-version"] }
-publish-conda = { cmd = "anaconda upload *.conda", description = "Publish the .conda package to anaconda.org", depends-on = ["build-conda"] }
-clean-conda = { cmd = "rm -f *.conda", description = "Clean the local .conda build artifacts" }
-# Documentation tasks
-build-docs = { cmd = "sphinx-build -b html docs docs/_build", description = "Build the documentation" }
-clean-docs = { cmd = "rm -rf docs/_build", description = "Clean the documentation build artifacts" }
-# Testing tasks
-test = { cmd = "pytest", description = "Run the tests" }  # pytest config above takes care of the arguments
-# MISC
-clean-all = { description = "Clean all build artifacts", depends-on = ["clean-pypi", "clean-docs", "clean-conda"] }
-sync-version = { cmd = "version=$(python -m versioningit); toml set tool.pixi.package.version \"$version\" --toml-path pyproject.toml", description = "Sync pyproject.toml version with Git version" }
-reset-version = { cmd = "toml set tool.pixi.package.version \"0.0.0\" --toml-path pyproject.toml", description = "Reset the package version to 0.0.0" }
-
-# ------------------------------- #
-# Pixi Feature Dependencies       #
-# ------------------------------- #
-[tool.pixi.feature.test.dependencies]
-pytest = "*"
-pytest-cov = "*"
-pytest-xdist = "*"
-pytest-repeat = "*"
-
-[tool.pixi.feature.package.dependencies]
-anaconda-client = ">=1.13.0,<2"
-twine = ">=6.1.0,<7"
-versioningit = "*"
-hatch = "*"
-
-[tool.pixi.feature.developer.dependencies]
-pip = "*"
-versioningit = "*"
-pre-commit = "*"
-ruff = "*"
-
-[tool.pixi.feature.docs.dependencies]
-sphinx = ">=8.2.1,<9"
-sphinx_rtd_theme = ">=3.0.1,<4"
-
-[tool.pixi.feature.jupyter.dependencies]
-jupyterlab = "*"
-ipympl = "*"
-ipywidgets = "*"
