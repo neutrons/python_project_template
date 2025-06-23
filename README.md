@@ -280,7 +280,7 @@ All metadata is centralized in `pyproject.toml`, eliminating the need for `envir
 Adjust the tasks in `pyproject.toml` to match your project's needs.
 Detailed instructions on adding tasks can be found in the [official documentation](https://pixi.sh/latest/features/tasks/).
 
-You can use `pixi task list` to see available tasks and their description
+You can use `pixi task list` to see available tasks and their descriptions.
 
 ```bash
 $> pixi task list
