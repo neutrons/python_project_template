@@ -266,58 +266,58 @@ Similarly, if you are not publishing to conda, you can remove any related depend
 
 ## Pixi
 
-Pixi is the single tool used to manage environments, dependencies, packaging, and task execution for this project. All metadata is centralized in `pyproject.toml`, eliminating the need for `environment.yml` or `meta.yaml`.
+Pixi is the single tool used to manage environments, dependencies, packaging, and task execution for this project.
+All metadata is centralized in `pyproject.toml`, eliminating the need for `environment.yml` or `meta.yaml`.
 
 ### How to use Pixi
 
-1. Install `pixi` by running `curl -fsSL https://pixi.sh/install.sh | bash` (or following the instruction on the [official website](https://pixi.sh/))
-1. To avoid build failures from environments in the source tree, enable detached environments:
+1. Install `pixi` by running `curl -fsSL https://pixi.sh/install.sh | bash`
+   (or following the instruction on the [official website](https://pixi.sh/))
+2. Run `pixi install` to create the virtual environments.
+   By default, `pixi` creates a virtual environment in the `.pixi` directory at the root of the repository.
+3. Run `pixi shell` to start a shell with an activate environment, and type `exit` to exit the shell.
 
-   ```bash
-   pixi config set detached-environments true
-   ```
+Adjust the tasks in `pyproject.toml` to match your project's needs.
+Detailed instructions on adding tasks can be found in the [official documentation](https://pixi.sh/latest/features/tasks/).
 
-   Commit `.pixi/config.toml` to your repository to ensure consistent behavior across environments.
-
-1. Run `pixi install` to install the dependencies.
-1. Adjust the tasks in `pyproject.toml` to match your project's needs.
-   3.1. Detailed instructions on adding tasks can be found in the [official documentation](https://pixi.sh/latest/features/tasks/).
-   3.2. You can use `pixi run` to see available tasks, and use `pixi run <task-name>` to run a specific task (note: if the selected task has dependencies, they will be run first).
-
-   ```bash
-   ❯ pixi run
-
-   Available tasks:
-        build-docs
-        clean
-        clean-all
-        clean-conda
-        clean-docs
-        clean-pypi
-        conda-build
-        conda-build-command
-        conda-builder
-        conda-publish
-        pypi-build
-        pypi-publish
-        pypi-publish-test
-        reset-version
-        sync-version
-        test
-        test-docs
-   ```
-
-### Pixi environment location
-
-By default, `pixi` will create a virtual environment in the `.pixi` directory at the root of the repository.
-However, when setting `detached-environments` to `true`, `pixi` will create the virtual environment in the cache directory (see [official documentation](https://pixi.sh/latest/features/environment/#caching-packages) for more information).
-If you want to keep your environment between sessions, you should add the following lines to your `.bashrc` or `.bash_profile`:
+You can use `pixi task list` to see available tasks and their descriptions.
 
 ```bash
-export PIXI_CACHE_DIR="$HOME/.pixi/cache"
+$> pixi task list
+Tasks that can run on this machine:
+-----------------------------------
+Task                 Description
+audit-deps           Audit the package dependencies for vulnerabilities
+build-docs           Build documentation
+conda-build          Build the conda package
+pypi-build           Build the package for PyPI
+test                 Run the test suite
 ```
+
+Use `pixi run <task-name>` to run a specific task (note: if the selected task has dependencies, they will be run first).
+You don't need to run `pixi shell` to run tasks, as `pixi run` will automatically activate the environment for you.
+
+## Activating the Environment Automatically
+
+Install [direnv](https://pixi.sh/latest/integration/third_party/direnv/)
+and create a file `.envrc` in the project root directory with the following content:
+
+```bash
+watch_file pixi.lock
+eval "$(pixi shell-hook)"
+unset PS1
+```
+
+- The line watch_file pixi.lock directs direnv to re-evaluate the environment whenever the file `pixi.lock `changes.
+- The line `unset PS1` prevents direnv from reporting on a nagging, albeit harmless, error message.
+
+Then in the terminal, run `direnv allow`.
+Now direnv activates the environment when you enter the project directory,
+and deactivates it when you leave the directory.
+
 
 ### Known issues
 
 On SNS Analysis systems, the `pixi run conda-build` task will fail due to `sqlite3` file locking issue.
-This is most likely due to the user directory being a shared mount, which interfering with `pixi` and `conda` environment locking.
+This is most likely due to the user directory being a shared mount,
+which interferes with `pixi` and `conda` environment locking.
