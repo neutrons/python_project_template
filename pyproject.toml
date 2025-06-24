@@ -124,7 +124,6 @@ QtPy = "*"
 PyQt5 = "*"
 pyqtgraph = "*"
 
-
 [tool.pixi.package]
 name = "examplepyapp"
 version = "0.0.0"     # placeholder, overwritten by sync-version
