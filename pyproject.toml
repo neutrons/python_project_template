@@ -89,15 +89,33 @@ file = "src/packagenamepy/_version.py"
 
 [tool.pixi.workspace]
 preview = ["pixi-build"] # Required until the build feature becomes stable
-channels = ["conda-forge", "https://prefix.dev/pixi-build-backends"]
+channels = [
+  "conda-forge",
+  "https://prefix.dev/pixi-build-backends", # Required for pixi build
+]
 platforms = ["linux-64", "osx-arm64"] # add additional platforms as needed
 # If you don't need to map PyPI dependencies to conda, you can remove the `conda-pypi-map` section and the `pixi-mapping.json` file.
 conda-pypi-map = { "conda-forge" = "pixi-mapping.json" }
 
+## Dependency tables - https://pixi.sh/latest/reference/pixi_manifest/#the-dependencies-tables
+## These tables override the dependencies listed in the [project] section
+
+[tool.pixi.dependencies]
+# Conda package dependencies
+numpy = "*"
+scipy = "*" # specify derivative dependencies here if you need them from conda
+# GUI
+pyqtgraph = "*"
+qt = "*"
+qtpy = "*"
+pyqt = "*"
+
 [tool.pixi.pypi-dependencies]
+# PyPI dependencies, including this package to allow local editable installs
 examplepyapp = { path = ".", editable = true }
 
-# These dependencies take priority over those listed in the [project] section.
+# Pixi Build configuration - https://pixi.sh/latest/reference/pixi_manifest/#pixi-build
+
 [tool.pixi.package.host-dependencies]
 hatchling = "*"
 versioningit = "*"
@@ -108,16 +126,6 @@ numpy = "*"
 QtPy = "*"
 PyQt5 = "*"
 pyqtgraph = "*"
-
-[tool.pixi.dependencies]
-# These will override the dependencies listed in the [project] section
-numpy = "*"
-scipy = "*" # specify derivative dependencies here if you need them from conda
-# GUI
-pyqtgraph = "*"
-qt = "*"
-qtpy = "*"
-pyqt = "*"
 
 [tool.pixi.package]
 name = "examplepyapp"
