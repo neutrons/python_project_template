@@ -1,7 +1,7 @@
 ci:
   # Leave pip-audit to only run locally and not in CI
   # pre-commit.ci does not allow network calls
-  skip: [pip-audit]
+  skip: [pip-audit, pixi-lock-check]
 
 exclude: "^pixi.lock$"
 repos:
