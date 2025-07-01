@@ -1,40 +1,49 @@
 ci:
   # Leave pip-audit to only run locally and not in CI
   # pre-commit.ci does not allow network calls
-  skip: [pip-audit]
+  skip: [pip-audit, pixi-lock-check]
 
 exclude: "^pixi.lock$"
+
 repos:
-- repo: https://github.com/pre-commit/pre-commit-hooks
-  rev: v5.0.0
-  hooks:
-    - id: check-added-large-files
-      args: [--maxkb=8192]
-    - id: check-merge-conflict
-    - id: check-yaml
-      args: [--allow-multiple-documents]
-      exclude: "conda.recipe/meta.yaml"
-    - id: end-of-file-fixer
-      exclude: "tests/cis_tests/.*"
-    - id: trailing-whitespace
-      exclude: "tests/cis_tests/.*"
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: check-added-large-files
+        args: [--maxkb=8192]
+      - id: check-merge-conflict
+      - id: check-yaml
+        args: [--allow-multiple-documents]
+        exclude: "conda.recipe/meta.yaml"
+      - id: end-of-file-fixer
+        exclude: "tests/cis_tests/.*"
+      - id: trailing-whitespace
+        exclude: "tests/cis_tests/.*"
 
-- repo: https://github.com/pypa/pip-audit
-  rev: v2.9.0
-  hooks:
-    - id: pip-audit
+  - repo: https://github.com/pypa/pip-audit
+    rev: v2.9.0
+    hooks:
+      - id: pip-audit
 
-- repo: https://github.com/astral-sh/ruff-pre-commit
-  rev: v0.12.1
-  hooks:
-    - id: ruff-check
-      args: [--fix, --exit-non-zero-on-fix]
-      exclude: "tests/cis_tests/.*"
-    - id: ruff-format
-      exclude: "tests/cis_tests/.*"
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.12.1
+    hooks:
+      - id: ruff-check
+        args: [--fix, --exit-non-zero-on-fix]
+        exclude: "tests/cis_tests/.*"
+      - id: ruff-format
+        exclude: "tests/cis_tests/.*"
 
-- repo: https://github.com/codespell-project/codespell
-  rev: v2.4.1
-  hooks:
-    - id: codespell
-      exclude: "tests/cis_tests/.*"
+  - repo: https://github.com/codespell-project/codespell
+    rev: v2.4.1
+    hooks:
+      - id: codespell
+        exclude: "tests/cis_tests/.*"
+
+  - repo: local
+    hooks:
+      - id: pixi-lock-check
+        name: pixi-lock-check
+        entry: bash -c "pixi lock --check"
+        stage: pre-push
+        language: system
