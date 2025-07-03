@@ -55,7 +55,6 @@ source = "versioningit"
 [tool.hatch.build.hooks.versioningit-onbuild]
 source-file = "src/packagenamepy/_version.py"
 build-file = "packagenamepy/_version.py"
-replacement = '"{next_version}"'
 
 [tool.hatch.build]
 artifacts = [
@@ -77,8 +76,12 @@ method = "minor"
 
 [tool.versioningit.format]
 distance = "{next_version}.dev{distance}"
-dirty = "{version}+d{build_date:%Y%m%d}"
-distance-dirty = "{next_version}.dev{distance}+d{build_date:%Y%m%d%H%M}"
+# Since pixi builds currently require the package version to be set statically in pyproject.toml,
+# and we solve that by temporarily changing pyproject.toml during build using the pixi tasks
+# sync-version and reset-version, then we need to ignore uncommitted changes in order for the wheel
+# version to be consistent with the package version
+dirty = "{version}"
+distance-dirty = "{next_version}.dev{distance}"
 
 [tool.versioningit.write]
 file = "src/packagenamepy/_version.py"
