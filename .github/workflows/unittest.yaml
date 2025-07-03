@@ -8,7 +8,7 @@ on:
     tags: ['v*']
 
 jobs:
-  linux:
+  tests:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -31,6 +31,3 @@ jobs:
         if: github.actor != 'dependabot[bot]'
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-
-      - name: Build conda package
-        run: pixi run conda-build
