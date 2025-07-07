@@ -127,7 +127,7 @@ versioningit = "*"
 python = ">=3.10"
 numpy = "*"
 QtPy = "*"
-PyQt5 = "*"
+pyqt = "*"
 pyqtgraph = "*"
 
 [tool.pixi.package]
