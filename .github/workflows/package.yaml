@@ -1,11 +1,10 @@
 name: Conda packaging and deployment
 
 on:
-  workflow_dispatch:
-  pull_request:
-  push:
-    branches: [next, qa, main]
-    tags: ['v*']
+  workflow_run:
+    workflows: [ "unit-test" ]  # must match the 'name:' of the unit test workflow
+    types:
+      - completed
 
 env:
   PKG_NAME: examplepyapp
@@ -13,6 +12,7 @@ env:
 
 jobs:
   build:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -29,6 +29,12 @@ jobs:
 
       - name: Build conda package
         run: pixi run conda-build
+
+      - name: Upload conda package as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: artifact-conda-package
+          path: ${{ env.PKG_NAME }}-*.conda
 
   conda-verify:
     needs: build
@@ -110,6 +116,7 @@ jobs:
           pixi run anaconda upload --label $CONDA_LABEL --user neutrons examplepyapp-*.conda
 
   pypi-publish:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     name: Upload release to PyPI
     runs-on: ubuntu-latest
     permissions:
