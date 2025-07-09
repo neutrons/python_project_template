@@ -1,11 +1,6 @@
 name: unit-test
 
-on:
-  workflow_dispatch:
-  pull_request:
-  push:
-    branches: [next, qa, main]
-    tags: ['v*']
+on: [workflow_call]  # this workflow is called from package.yaml
 
 jobs:
   linux:

@@ -1,18 +1,22 @@
 name: Conda packaging and deployment
 
 on:
-  workflow_run:
-    workflows: [ "unit-test" ]  # must match the 'name:' of the unit test workflow
-    types:
-      - completed
+  workflow_dispatch:
+  pull_request:
+  push:
+    branches: [next, qa, main]
+    tags: ['v*']
 
 env:
   PKG_NAME: examplepyapp
   MODULE_NAME: packagenamepy
 
 jobs:
+  tests:
+    uses: ./github/workflows/unittest.yaml
+
   build:
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    needs: tests
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -116,8 +120,8 @@ jobs:
           pixi run anaconda upload --label $CONDA_LABEL --user neutrons examplepyapp-*.conda
 
   pypi-publish:
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     name: Upload release to PyPI
+    needs: tests
     runs-on: ubuntu-latest
     permissions:
       # IMPORTANT: this permission is mandatory for trusted publishing
