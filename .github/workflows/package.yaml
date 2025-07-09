@@ -13,7 +13,7 @@ env:
 
 jobs:
   tests:
-    uses: ./github/workflows/unittest.yaml
+    uses: ./github/workflows/unittest.yaml@backmari-pixi-build-consistent-versioning-option2
 
   build:
     needs: tests
