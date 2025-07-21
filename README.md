@@ -264,6 +264,36 @@ Similarly, if you are not publishing to conda, you can remove any related depend
    }
    ```
 
+### Auditing dependencies
+
+The tool [`pip-audit`](https://github.com/pypa/pip-audit) allows for checking dependencies for versions with known weaknesses or vulnerabilities as registered in [open source vulnerabilities database (osv)](https://osv.dev/).
+This is provided as the task `audit-deps` which will verify that there are no known python dependencies in the pixi environment.
+
+**Finding source of issue:** This is an outdated example used to demonstrate how to suppress vulnerabilities.
+Assume that `pixi run audit-deps` returns a message that there is a issue [PYSEC-2025-61](https://osv.dev/vulnerability/PYSEC-2025-61) that is associated with pillow v11.2.0.
+Since this is an indirect dependency, one can use
+
+```bash
+$ pixi tree --invert pillow
+
+  pillow 11.2.0
+  └── anaconda-client 1.13.0
+```
+
+to find out that this is included by the anaconda-client package which is also not a runtime dependency.
+This can be ignored.
+
+**Ignoring a vulnerability:** Unfortunately, `pip-audit` does not have a configuration file that allows for ignoring issues.
+This is done with a suppression in the `pyproject.toml` by modifying the task.
+
+```
+# ignore pillow error because it is only used by anaconda-client v1.13.0
+audit-deps = { cmd = "pip-audit --local -s osv --ignore-vuln=PYSEC-2025-61" }
+```
+
+The comment is added to save future developers effort in confirming the issue.
+At a later date, the team should periodically remove the suppression and confirm the issue persists or remove the suppression permanently.
+
 ## Pixi
 
 Pixi is the single tool used to manage environments, dependencies, packaging, and task execution for this project.
