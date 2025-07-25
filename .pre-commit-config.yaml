@@ -1,5 +1,3 @@
-ci:
-  skip: [taplo-lint]
 exclude: "^pixi.lock$"
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
@@ -7,7 +5,10 @@ repos:
     hooks:
       - id: check-added-large-files
         args: [--maxkb=8192]
+      - id: check-json
       - id: check-merge-conflict
+      - id: check-toml
+      - id: check-xml
       - id: check-yaml
         args: [--allow-multiple-documents]
         exclude: "conda.recipe/meta.yaml"
@@ -36,7 +37,6 @@ repos:
     rev: v0.9.3
     hooks:
       - id: taplo-format
-      - id: taplo-lint # makes web calls so can't be used in CI
   - repo: local
     hooks:
       - id: pixi-lock-check
