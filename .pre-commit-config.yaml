@@ -1,6 +1,3 @@
-ci:
-  skip: [pixi-lock-check]
-
 exclude: "^pixi.lock$"
 
 repos:
@@ -38,5 +35,5 @@ repos:
       - id: pixi-lock-check
         name: pixi-lock-check
         entry: bash -c "pixi lock --check"
-        stage: pre-push
+        stages: [pre-push]
         language: system
