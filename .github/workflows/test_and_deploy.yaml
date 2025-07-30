@@ -76,7 +76,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Verify conda package
-        uses: neutrons/conda-verify
+        uses: neutrons/conda-verify@main
         with:
           package-name: ${{ env.PKG_NAME }}
           module-name: ${{ env.PKG_NAME }}
