@@ -5,7 +5,7 @@ on:
   pull_request:
   push:
     branches: [next, qa, main]
-    tags: ['v*']
+    tags: ["v*"]
 
 env:
   PKG_NAME: examplepyapp
@@ -67,45 +67,19 @@ jobs:
           path: ${{ env.PKG_NAME }}-*.conda
 
   conda-verify:
-    name: Verify conda package
-    needs: conda-build
     runs-on: ubuntu-latest
     defaults:
       run:
         shell: bash -el {0}
     steps:
-      - name: Setup micromamba
-        uses: mamba-org/setup-micromamba@v2
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Verify conda package
+        uses: ./
         with:
-          environment-name: test
-          init-shell: bash
-          create-args: >-
-            python=3.10
-
-      - name: Download conda package artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: artifact-conda-package
-          path: /tmp/local-channel/linux-64
-
-      - name: Install the package
-        run: |
-          micromamba install --yes -c conda-forge conda-build conda-index
-          python -m conda_index /tmp/local-channel
-          micromamba install --yes -c /tmp/local-channel -c mantid-ornl -c conda-forge ${{ env.PKG_NAME }}
-
-      - name: Verify the installation
-        run: |
-          pkg_version=$(micromamba list "${{ env.PKG_NAME }}" | awk -v pkg="${{ env.PKG_NAME }}" '$1 == pkg { print $2 }')
-          echo "Package version: $pkg_version"
-          module_version=$(python -c "import ${{ env.MODULE_NAME }}; print(${{ env.MODULE_NAME }}.__version__)")
-          echo "Module version: $module_version"
-          if [ "$pkg_version" != "$module_version" ]; then
-            echo "Version mismatch!"
-            exit 1
-          else
-            echo "Versions match."
-          fi
+          package-name: ${{ env.PKG_NAME }}
+          module-name: ${{ env.PKG_NAME }}
 
   publish:
     name: Upload package to anaconda
