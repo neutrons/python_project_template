@@ -79,7 +79,7 @@ jobs:
         uses: neutrons/conda-verify@main
         with:
           package-name: ${{ env.PKG_NAME }}
-          module-name: ${{ env.PKG_NAME }}
+          module-name: ${{ env.MODULE_NAME }}
 
   publish:
     name: Upload package to anaconda
