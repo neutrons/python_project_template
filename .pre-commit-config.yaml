@@ -33,6 +33,10 @@ repos:
     rev: v0.17.2
     hooks:
       - id: yamlfmt
+  - repo: https://github.com/adrienverge/yamllint/
+    rev: v1.37.1
+    hooks:
+      - id: yamllint
   - repo: https://github.com/ComPWA/taplo-pre-commit
     rev: v0.9.3
     hooks:
