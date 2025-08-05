@@ -1,4 +1,5 @@
 # Configuration file for codecov reporting code coverage
+
 # Percentage drop allowed
 coverage:
   status:

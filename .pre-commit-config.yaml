@@ -29,10 +29,6 @@ repos:
     hooks:
       - id: codespell
         exclude: "tests/cis_tests/.*"
-  - repo: https://github.com/google/yamlfmt
-    rev: v0.17.2
-    hooks:
-      - id: yamlfmt
   - repo: https://github.com/adrienverge/yamllint/
     rev: v1.37.1
     hooks:
