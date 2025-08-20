@@ -22,12 +22,7 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-docs = [
-  "sphinx>=8.2.1,<9",
-  "sphinx_rtd_theme>=3.0.1,<4",
-  "versioningit",
-  "myst_parser",
-]
+docs = ["sphinx", "sphinx_rtd_theme", "versioningit", "myst_parser"]
 
 [project.scripts]
 packagename-cli = "packagenamepy.packagename:main"
@@ -171,8 +166,8 @@ ruff = "*"
 versioningit = "*"
 
 [tool.pixi.feature.docs.dependencies]
-sphinx = ">=8.2.1,<9"
-sphinx_rtd_theme = ">=3.0.1,<4"
+sphinx = "*"
+sphinx_rtd_theme = "*"
 
 [tool.pixi.feature.jupyter.dependencies]
 jupyterlab = "*"
