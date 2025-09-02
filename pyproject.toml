@@ -107,6 +107,8 @@ pyqtgraph = "*"
 qt = "*"
 qtpy = "*"
 pyqt = "*"
+# pip-audit
+h2 = ">=4.3.0" # Known vulnerability in <4.3.0
 
 [tool.pixi.pypi-dependencies]
 # PyPI dependencies, including this package to allow local editable installs
