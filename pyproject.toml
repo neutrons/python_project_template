@@ -184,7 +184,12 @@ test-docs = { cmd = "sphinx-build -M doctest docs docs/_build", description = "T
 # Testing
 test = { description = "Run the test suite", cmd = "pytest" }
 # Packaging
-pypi-build = { cmd = "hatch build", description = "Build the package for PyPI" }
+pypi-sdist = { cmd = "hatch build -t sdist", description = "Build the source distribution (tar.gz)" }
+pypi-wheel = { cmd = "hatch build -t wheel", description = "Build the wheel distribution" }
+pypi-build = { description = "Build the packages for PyPI", depends-on = [
+  "pypi-sdist",
+  "pypi-wheel",
+] }
 pypi-publish = { cmd = "twine upload dist/*", description = "Publish the package to PyPI", depends-on = [
   "pypi-build",
 ] }
