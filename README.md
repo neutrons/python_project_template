@@ -316,12 +316,28 @@ You can use `pixi task list` to see available tasks and their descriptions.
 $> pixi task list
 Tasks that can run on this machine:
 -----------------------------------
+audit-deps, backup-toml, build-docs, clean, clean-all, clean-conda, clean-docs, clean-pypi, conda-build, conda-build-command, conda-publish, pypi-build, pypi-publish, pypi-publish-test, pypi-sdist, pypi-wheel, reset-toml, sync-version, test, test-docs
 Task                 Description
 audit-deps           Audit the package dependencies for vulnerabilities
+backup-toml          Backup the pyproject.toml file
 build-docs           Build documentation
+clean                Clean up various caches and build artifacts
+clean-all            Clean all artifacts
+clean-conda          Clean the local .conda build artifacts
+clean-docs           Clean up documentation build artifacts
+clean-pypi           Clean the PyPI build artifacts
 conda-build          Build the conda package
-pypi-build           Build the package for PyPI
+conda-build-command  Build the conda package command
+conda-publish        Publish the .conda package to anaconda.org
+pypi-build           Build the packages for PyPI
+pypi-publish         Publish the package to PyPI
+pypi-publish-test    Publish the package to TestPyPI
+pypi-sdist           Build the source distribution (tar.gz)
+pypi-wheel           Build the wheel distribution
+reset-toml           Reset the pyproject.toml file to the original state
+sync-version         Sync pyproject.toml version with Git version
 test                 Run the test suite
+test-docs            Test building the documentation
 ```
 
 Use `pixi run <task-name>` to run a specific task (note: if the selected task has dependencies, they will be run first).
