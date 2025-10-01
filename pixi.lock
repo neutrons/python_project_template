@@ -39,7 +39,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/conda-package-streaming-0.12.0-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/coverage-7.10.7-py312h8a5da7c_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/cpython-3.12.11-py312hd8ed1ab_0.conda
-      - conda: https://conda.anaconda.org/conda-forge/linux-64/cryptography-46.0.1-py312hee9fe19_3.conda
+      - conda: https://conda.anaconda.org/conda-forge/linux-64/cryptography-46.0.2-py312hee9fe19_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/cyclonedx-python-lib-9.1.0-pyh29332c3_0.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/cyrus-sasl-2.1.28-hd9c7081_0.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/dbus-1.16.2-h3c4dab8_0.conda
@@ -268,7 +268,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/typer-slim-0.19.2-pyhcf101f3_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/typer-slim-standard-0.19.2-h6e3bb38_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/typing-extensions-4.15.0-h396c80c_0.conda
-      - conda: https://conda.anaconda.org/conda-forge/noarch/typing-inspection-0.4.1-pyhd8ed1ab_0.conda
+      - conda: https://conda.anaconda.org/conda-forge/noarch/typing-inspection-0.4.2-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/typing_extensions-4.15.0-pyhcf101f3_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/tzdata-2025b-h78e105d_0.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/ukkonen-1.0.1-py312h68727a3_5.conda
@@ -530,7 +530,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/typer-slim-0.19.2-pyhcf101f3_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/typer-slim-standard-0.19.2-h6e3bb38_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/typing-extensions-4.15.0-h396c80c_0.conda
-      - conda: https://conda.anaconda.org/conda-forge/noarch/typing-inspection-0.4.1-pyhd8ed1ab_0.conda
+      - conda: https://conda.anaconda.org/conda-forge/noarch/typing-inspection-0.4.2-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/typing_extensions-4.15.0-pyhcf101f3_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/tzdata-2025b-h78e105d_0.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/ukkonen-1.0.1-py313hf9c7212_5.conda
@@ -1940,9 +1940,9 @@ packages:
   - pkg:pypi/cpython
   size: 48174
   timestamp: 1756909387263
-- conda: https://conda.anaconda.org/conda-forge/linux-64/cryptography-46.0.1-py312hee9fe19_3.conda
-  sha256: 30f3e80f34d682c41f2c12edabddd7c68eb99c678cf12b12fcd592b8f795ea29
-  md5: ab4f2074b5b05dc10d784141077d5482
+- conda: https://conda.anaconda.org/conda-forge/linux-64/cryptography-46.0.2-py312hee9fe19_0.conda
+  sha256: 927bba47bb07ab18e7521521891654aabf241336886a72f28d7f4921591560ef
+  md5: 3c4a18c7e247b6db8cf5605b1846d511
   depends:
   - __glibc >=2.17,<3.0.a0
   - cffi >=1.14
@@ -1956,8 +1956,8 @@ packages:
   license_family: BSD
   purls:
   - pkg:pypi/cryptography
-  size: 1713598
-  timestamp: 1758533546677
+  size: 1712569
+  timestamp: 1759320688700
 - conda: https://conda.anaconda.org/conda-forge/noarch/cycler-0.12.1-pyhd8ed1ab_1.conda
   sha256: 9827efa891e507a91a8a2acf64e210d2aff394e1cde432ad08e1f8c66b12293c
   md5: 44600c4667a319d67dbe0681fc0bc833
@@ -2120,8 +2120,8 @@ packages:
   timestamp: 1733208220327
 - pypi: ./
   name: examplepyapp
-  version: 0.1.0
-  sha256: eafeda7aec275b6f1cf10ede3ec0c99c27ee94d4cfe4081228396e062703494d
+  version: 1.1.0.dev70
+  sha256: a9b43f31a6d594be09ce4a3a55bff2792dc33b853b2887b5660f01b5a46887c4
   requires_dist:
   - bm3d-streak-removal>=0.2.0,<0.3
   - numpy>=2.2,<3
@@ -7686,18 +7686,17 @@ packages:
   - pkg:pypi/typing-extensions
   size: 91383
   timestamp: 1756220668932
-- conda: https://conda.anaconda.org/conda-forge/noarch/typing-inspection-0.4.1-pyhd8ed1ab_0.conda
-  sha256: 4259a7502aea516c762ca8f3b8291b0d4114e094bdb3baae3171ccc0900e722f
-  md5: e0c3cd765dc15751ee2f0b03cd015712
+- conda: https://conda.anaconda.org/conda-forge/noarch/typing-inspection-0.4.2-pyhd8ed1ab_0.conda
+  sha256: 8aaf69b828c2b94d0784f18f70f11aa032950d304e57e88467120b45c18c24fd
+  md5: 399701494e731ce73fdd86c185a3d1b4
   depends:
-  - python >=3.9
+  - python >=3.10
   - typing_extensions >=4.12.0
   license: MIT
-  license_family: MIT
   purls:
   - pkg:pypi/typing-inspection
-  size: 18809
-  timestamp: 1747870776989
+  size: 18799
+  timestamp: 1759301271883
 - conda: https://conda.anaconda.org/conda-forge/noarch/typing_extensions-4.15.0-pyhcf101f3_0.conda
   sha256: 032271135bca55aeb156cee361c81350c6f3fb203f57d024d7e5a1fc9ef18731
   md5: 0caa1af407ecff61170c9437a808404d
