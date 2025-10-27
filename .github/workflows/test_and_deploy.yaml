@@ -71,7 +71,7 @@ jobs:
           local-channel: /tmp/local-channel
 
       - name: Upload conda package as artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: artifact-conda-package
           path: ${{ env.PKG_NAME }}-*.conda
