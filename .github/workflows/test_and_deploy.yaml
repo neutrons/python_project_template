@@ -23,7 +23,7 @@ jobs:
           fetch-tags: true
 
       - name: Setup pixi
-        uses: prefix-dev/setup-pixi@v0.9.2
+        uses: prefix-dev/setup-pixi@v0.9.3
         with:
           pixi-version: v0.50.2
           manifest-path: pyproject.toml
@@ -52,7 +52,7 @@ jobs:
           fetch-tags: true
 
       - name: Setup pixi
-        uses: prefix-dev/setup-pixi@v0.9.2
+        uses: prefix-dev/setup-pixi@v0.9.3
         with:
           pixi-version: v0.50.2
           manifest-path: pyproject.toml
@@ -89,7 +89,7 @@ jobs:
           fetch-tags: true
 
       - name: Setup Pixi
-        uses: prefix-dev/setup-pixi@v0.9.2
+        uses: prefix-dev/setup-pixi@v0.9.3
         with:
           pixi-version: v0.50.2
           manifest-path: pyproject.toml
@@ -125,7 +125,7 @@ jobs:
           fetch-tags: true
 
       - name: Setup pixi
-        uses: prefix-dev/setup-pixi@v0.9.2
+        uses: prefix-dev/setup-pixi@v0.9.3
         with:
           pixi-version: v0.50.2
           manifest-path: pyproject.toml
