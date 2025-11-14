@@ -147,7 +147,7 @@ default = { features = [
 jupyter = { features = ["developer", "jupyter"], solve-group = "jupyter" }
 
 [tool.pixi.feature.test.dependencies]
-pytest = "*"
+pytest = ">=6.2.4,<9.0.0" # constrained to match pytest-playwright requirements
 pytest-cov = "*"
 pytest-repeat = "*"
 pytest-xdist = "*"
@@ -162,7 +162,7 @@ hatch = "*"
 toml-cli = "*"
 
 [tool.pixi.feature.developer.dependencies]
-pip = "*"
+pip = ">=25.3"
 pip-audit = "*"
 pre-commit = "*"
 ruff = "*"
@@ -208,8 +208,7 @@ conda-publish = { cmd = "anaconda upload *.conda", description = "Publish the .c
   "conda-build",
 ] }
 # Misc
-# As of 10-01-2025, all pip version are failing pip-autid, so we ignore the known issue GHSA-4xh5-x5gv-qwph for now
-audit-deps = { cmd = "pip-audit --ignore-vuln GHSA-4xh5-x5gv-qwph --local -s osv", description = "Audit the package dependencies for vulnerabilities" }
+audit-deps = { cmd = "pip-audit --local -s osv", description = "Audit the package dependencies for vulnerabilities" }
 # Cleaning
 clean = { cmd = 'rm -rf .pytest_cache .ruff_cache **/*.egg-info **/dist **/__pycache__', description = "Clean up various caches and build artifacts" }
 clean-conda = { cmd = "rm -f *.conda", description = "Clean the local .conda build artifacts" }
