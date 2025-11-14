@@ -147,7 +147,7 @@ default = { features = [
 jupyter = { features = ["developer", "jupyter"], solve-group = "jupyter" }
 
 [tool.pixi.feature.test.dependencies]
-pytest = "*"
+pytest = ">=6.2.4,<9.0.0" # constrained to match pytest-playwright requirements
 pytest-cov = "*"
 pytest-repeat = "*"
 pytest-xdist = "*"
