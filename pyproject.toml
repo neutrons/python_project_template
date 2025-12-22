@@ -108,9 +108,10 @@ qt = "*"
 qtpy = "*"
 pyqt = "*"
 # pip-audit
-h2 = ">=4.3.0"      # Known vulnerability in <4.3.0
+h2 = ">=4.3.0"        # Known vulnerability in <4.3.0
 brotli = ">=1.2.0"
-urllib3 = ">=2.6.0" # Known vulnerability in <2.6.0
+urllib3 = ">=2.6.0"   # Known vulnerability in <2.6.0
+filelock = ">=3.20.1" # Known vulnerability in <3.20.1
 
 [tool.pixi.pypi-dependencies]
 # PyPI dependencies, including this package to allow local editable installs
