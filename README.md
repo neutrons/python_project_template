@@ -364,6 +364,53 @@ and deactivates it when you leave the directory.
 
 ### Known issues
 
+#### SQLite file locking on shared mounts
+
 On SNS Analysis systems, the `pixi run conda-build` task will fail due to `sqlite3` file locking issue.
 This is most likely due to the user directory being a shared mount,
 which interferes with `pixi` and `conda` environment locking.
+
+#### Dynamic versioning and lock file circular dependency
+
+When using pixi with an editable self-dependency (`examplepyapp = { path = ".", editable = true }`) and dynamic git-based versioning (versioningit), there is a fundamental circular dependency:
+
+1. The lock file (`pixi.lock`) records the package version computed from git state (e.g., `0.2.0.dev291`)
+2. Committing the lock file changes the git state (new commit hash)
+3. The new git state produces a different version than what's in the lock file
+4. CI runs `pixi install --locked` and fails with "lock-file not up-to-date with the workspace"
+
+**The Problem:**
+You cannot commit a lock file that references its own commit - it's a chicken-and-egg problem. Every commit changes the version, making the lock file immediately stale.
+
+**The Solution:**
+We use pixi's `--skip` flag (available since v0.51.0) to skip the editable local package during locked install, then install it separately with pip:
+
+```yaml
+# In .github/workflows/*.yaml
+- name: Setup pixi
+  uses: prefix-dev/setup-pixi@v0.9.3
+  with:
+    run-install: false  # Disable automatic install
+
+- name: Install dependencies (skip local package)
+  run: pixi install --frozen --skip ${{ env.PKG_NAME }}
+
+- name: Install local package
+  run: pixi run pip install --no-deps -e .
+```
+
+**Why this works:**
+- `--frozen` uses the lock file without checking if it's up-to-date
+- `--skip <package>` skips the editable local package entirely
+- `pip install --no-deps -e .` installs the local package separately (pip doesn't check against lock file)
+- All external dependencies remain locked and verified
+- The local package version can float freely
+
+**Trade-offs:**
+- The local package's version is not enforced by the lock file (acceptable since it's the code being tested)
+- Adds ~5-10 seconds to CI for the extra pip install step
+
+**References:**
+- [Pixi PR #3092: Add --skip flag](https://github.com/prefix-dev/pixi/pull/3092)
+- [setup-pixi GitHub Action](https://github.com/prefix-dev/setup-pixi)
+- This is a known issue affecting all lock file-based package managers (pixi, poetry, pdm, uv) when combined with dynamic versioning tools (versioningit, setuptools-scm, hatch-vcs)
