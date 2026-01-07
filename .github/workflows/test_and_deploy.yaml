@@ -11,6 +11,11 @@ env:
   PKG_NAME: examplepyapp
   MODULE_NAME: packagenamepy
 
+# cancel previous job if new commit is pushed
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   tests:
     name: Unit tests
