@@ -2012,8 +2012,8 @@ packages:
   timestamp: 1733208220327
 - pypi: ./
   name: examplepyapp
-  version: 0.1.0
-  sha256: c489a6c027608695b0f8e3f54996b76e046b775b65aa6db2c502b1925c17a13a
+  version: 0.2.0.dev294
+  sha256: 414acc4f7dbd40d7f21f6a4df931de53b7e6dc11889dd046ceb944c478aea7e8
   requires_dist:
   - bm3d-streak-removal>=0.2.0,<0.3
   - numpy>=2.2,<3
