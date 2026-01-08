@@ -210,7 +210,8 @@ conda-publish = { cmd = "anaconda upload *.conda", description = "Publish the .c
   "conda-build",
 ] }
 # Misc
-audit-deps = { cmd = "pip-audit --local -s osv", description = "Audit the package dependencies for vulnerabilities" }
+# urllib3 is only used for package and deployment
+audit-deps = { cmd = "pip-audit --local -s osv --ignore-vuln CVE-2026-21441", description = "Audit the package dependencies for vulnerabilities" }
 # Cleaning
 clean = { cmd = 'rm -rf .pytest_cache .ruff_cache **/*.egg-info **/dist **/__pycache__', description = "Clean up various caches and build artifacts" }
 clean-conda = { cmd = "rm -f *.conda", description = "Clean the local .conda build artifacts" }
