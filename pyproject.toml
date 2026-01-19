@@ -108,10 +108,11 @@ qt = "*"
 qtpy = "*"
 pyqt = "*"
 # pip-audit
-h2 = ">=4.3.0"        # Known vulnerability in <4.3.0
+h2 = ">=4.3.0"           # Known vulnerability in <4.3.0
 brotli = ">=1.2.0"
-urllib3 = ">=2.6.0"   # Known vulnerability in <2.6.0
-filelock = ">=3.20.1" # Known vulnerability in <3.20.1
+urllib3 = ">=2.6.3"      # Known vulnerability in <2.6.3
+filelock = ">=3.20.3"    # Known vulnerability in <3.20.3
+virtualenv = ">=20.36.1" # Known vulnerability in <20.36.1
 
 [tool.pixi.pypi-dependencies]
 # PyPI dependencies, including this package to allow local editable installs
@@ -211,7 +212,7 @@ conda-publish = { cmd = "anaconda upload *.conda", description = "Publish the .c
 ] }
 # Misc
 # urllib3 is only used for package and deployment
-audit-deps = { cmd = "pip-audit --local -s osv --ignore-vuln CVE-2026-21441", description = "Audit the package dependencies for vulnerabilities" }
+audit-deps = { cmd = "pip-audit --local -s osv", description = "Audit the package dependencies for vulnerabilities" }
 # Cleaning
 clean = { cmd = 'rm -rf .pytest_cache .ruff_cache **/*.egg-info **/dist **/__pycache__', description = "Clean up various caches and build artifacts" }
 clean-conda = { cmd = "rm -f *.conda", description = "Clean the local .conda build artifacts" }
