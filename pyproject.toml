@@ -108,10 +108,10 @@ qt = "*"
 qtpy = "*"
 pyqt = "*"
 # pip-audit
-h2 = ">=4.3.0"        # Known vulnerability in <4.3.0
+h2 = ">=4.3.0"           # Known vulnerability in <4.3.0
 brotli = ">=1.2.0"
-urllib3 = ">=2.6.3"   # Known vulnerability in <2.6.3
-filelock = ">=3.20.3" # Known vulnerability in <3.20.3
+urllib3 = ">=2.6.3"      # Known vulnerability in <2.6.3
+filelock = ">=3.20.3"    # Known vulnerability in <3.20.3
 virtualenv = ">=20.36.1" # Known vulnerability in <20.36.1
 
 [tool.pixi.pypi-dependencies]
