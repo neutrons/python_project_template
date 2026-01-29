@@ -117,6 +117,7 @@ virtualenv = ">=20.36.1" # Known vulnerability in <20.36.1
 [tool.pixi.pypi-dependencies]
 # PyPI dependencies, including this package to allow local editable installs
 examplepyapp = { path = ".", editable = true }
+jaraco-context = ">=6.1.0"                     # CVE-2026-23949
 
 # Pixi Build configuration - https://pixi.sh/latest/reference/pixi_manifest/#pixi-build
 
