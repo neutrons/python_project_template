@@ -96,7 +96,7 @@ jobs:
           local-channel: /tmp/local-channel
 
       - name: Upload conda package as artifact
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: artifact-conda-package
           path: ${{ env.PKG_NAME }}-*.conda
@@ -127,7 +127,7 @@ jobs:
         run: pixi install --frozen --skip ${{ env.PKG_NAME }}
 
       - name: Download conda package artifact
-        uses: actions/download-artifact@v7
+        uses: actions/download-artifact@v8
         with:
           name: artifact-conda-package
 
