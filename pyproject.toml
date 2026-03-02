@@ -108,13 +108,13 @@ qt = "*"
 qtpy = "*"
 pyqt = "*"
 # pip-audit
-h2 = ">=4.3.0"            # Known vulnerability in <4.3.0
+h2 = ">=4.3.0"               # Known vulnerability in <4.3.0
 brotli = ">=1.2.0"
-urllib3 = ">=2.6.3"       # Known vulnerability in <2.6.3
-filelock = ">=3.20.3"     # Known vulnerability in <3.20.3
-virtualenv = ">=20.36.1"  # Known vulnerability in <20.36.1
-cryptography = ">=46.0.5" # CVE-2026-26007
-pillow = ">=12.1.1"       # CVE-2026-25990
+urllib3 = ">=2.6.3"          # Known vulnerability in <2.6.3
+filelock = ">=3.20.3"        # Known vulnerability in <3.20.3
+virtualenv = ">=20.36.1,<21" # Known vulnerability in <20.36.1; capped due to https://github.com/pypa/hatch/issues/2193
+cryptography = ">=46.0.5"    # CVE-2026-26007
+pillow = ">=12.1.1"          # CVE-2026-25990
 
 [tool.pixi.pypi-dependencies]
 # PyPI dependencies, including this package to allow local editable installs
