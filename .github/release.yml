@@ -1,0 +1,9 @@
+# Exclude bot PRs from auto-generated release notes
+changelog:
+  exclude:
+    labels:
+      - ignore-for-release
+    authors:
+      - dependabot
+      - dependabot[bot]
+      - pre-commit-ci[bot]
