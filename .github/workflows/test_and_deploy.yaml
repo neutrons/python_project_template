@@ -137,7 +137,7 @@ jobs:
           anaconda-token: ${{ secrets.ANACONDA_TOKEN }}
           organization: neutrons
           package-path: ${{ env.PKG_NAME }}-*.conda
-      
+
       - name: Remove old packages
         if: github.ref == 'refs/heads/next'
         uses: neutrons/conda-actions/pkg-remove@v1
