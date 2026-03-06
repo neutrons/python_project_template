@@ -144,7 +144,7 @@ jobs:
         with:
           anaconda_token: ${{ secrets.ANACONDA_TOKEN }}
           organization: neutrons
-          package_name: quicknxs
+          package_name: ${{ env.PKG_NAME }}
           label: ${{ env.CONDA_LABEL }}
           keep: 5
 
