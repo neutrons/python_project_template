@@ -65,6 +65,9 @@ packages = ["src/packagenamepy"]
 [tool.versioningit.vcs]
 method = "git"
 default-tag = "0.1.0"
+# Ignore RC tags when calculating distance from the latest tag.
+# This ensures dev versions increase monotonically relative to the latest production release.
+exclude = ["*rc*"]
 
 [tool.versioningit.next-version]
 method = "minor"
