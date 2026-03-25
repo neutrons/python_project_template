@@ -65,21 +65,18 @@ packages = ["src/packagenamepy"]
 [tool.versioningit.vcs]
 method = "git"
 default-tag = "0.1.0"
-# Ignore RC tags when calculating distance from the latest tag.
-# This ensures dev versions increase monotonically relative to the latest production release.
-exclude = ["*rc*"]
 
 [tool.versioningit.next-version]
 method = "minor"
 
 [tool.versioningit.format]
-distance = "{next_version}.dev{distance}"
+distance = "{next_version}.dev{committer_date:%Y%m%d%H%M%S}"
 # Since pixi builds currently require the package version to be set statically in pyproject.toml,
 # and we solve that by temporarily changing pyproject.toml during build using the pixi tasks
 # sync-version and reset-toml, then we need to ignore uncommitted changes in order for the wheel
 # version to be consistent with the package version
 dirty = "{version}"
-distance-dirty = "{next_version}.dev{distance}"
+distance-dirty = "{next_version}.dev{committer_date:%Y%m%d%H%M%S}"
 
 [tool.versioningit.write]
 file = "src/packagenamepy/_version.py"
