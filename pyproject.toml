@@ -215,7 +215,10 @@ conda-publish = { cmd = "anaconda upload *.conda", description = "Publish the .c
   "conda-build",
 ] }
 # Misc
-audit-deps = { cmd = "pip-audit --local -s osv --ignore-vuln CVE-2026-4539 --ignore-vuln CVE-2026-34073", description = "Audit the package dependencies for vulnerabilities" }
+# CVE-2026-3219: pip interpretation conflict (handles concatenated tar+ZIP as ZIP).
+# Pip 26.0.1 is pre-installed on GitHub Actions runners; no patched version available
+# as of 2026-04. Re-evaluate when pip ships a fix. See GHSA-58qw-9mgm-455v.
+audit-deps = { cmd = "pip-audit --local -s osv --ignore-vuln CVE-2026-4539 --ignore-vuln CVE-2026-34073 --ignore-vuln CVE-2026-3219", description = "Audit the package dependencies for vulnerabilities" }
 # Cleaning
 clean = { cmd = 'rm -rf .pytest_cache .ruff_cache **/*.egg-info **/dist **/__pycache__', description = "Clean up various caches and build artifacts" }
 clean-conda = { cmd = "rm -f *.conda", description = "Clean the local .conda build artifacts" }
