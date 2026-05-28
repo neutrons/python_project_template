@@ -30,7 +30,6 @@ jobs:
       - name: Setup pixi
         uses: prefix-dev/setup-pixi@v0.9.5
         with:
-          pixi-version: v0.62.2
           manifest-path: pyproject.toml
           # Workaround: Dynamic versioning (versioningit) causes lock file version mismatch.
           # We skip the editable package install and do it separately with pip.
@@ -69,7 +68,6 @@ jobs:
       - name: Setup pixi
         uses: prefix-dev/setup-pixi@v0.9.5
         with:
-          pixi-version: v0.62.2
           manifest-path: pyproject.toml
           # Workaround: Dynamic versioning (versioningit) causes lock file version mismatch.
           # We skip the editable package install and do it separately with pip.
@@ -88,12 +86,21 @@ jobs:
           mkdir -p /tmp/local-channel/linux-64
           cp *.conda /tmp/local-channel/linux-64
 
+      # pkg-verify requires a conda env that already has the package
+      # installed (and micromamba on PATH); pkg-install sets both up.
+      - name: Install built conda package
+        id: install
+        uses: neutrons/conda-actions/pkg-install@89794e4e2c37b1f13f04a8f1073b972a4813976b
+        with:
+          package-name: ${{ env.PKG_NAME }}
+          local-channel: /tmp/local-channel
+
       - name: Verify conda package
-        uses: neutrons/conda-actions/pkg-verify@main
+        uses: neutrons/conda-actions/pkg-verify@89794e4e2c37b1f13f04a8f1073b972a4813976b
         with:
           package-name: ${{ env.PKG_NAME }}
           module-name: ${{ env.MODULE_NAME }}
-          local-channel: /tmp/local-channel
+          conda-env-name: ${{ steps.install.outputs.conda_env }}
 
       - name: Upload conda package as artifact
         uses: actions/upload-artifact@v7
@@ -116,7 +123,6 @@ jobs:
       - name: Setup Pixi
         uses: prefix-dev/setup-pixi@v0.9.5
         with:
-          pixi-version: v0.62.2
           manifest-path: pyproject.toml
           # Workaround: Dynamic versioning (versioningit) causes lock file version mismatch.
           # We skip the editable package install and do it separately with pip.
@@ -165,7 +171,6 @@ jobs:
       - name: Setup pixi
         uses: prefix-dev/setup-pixi@v0.9.5
         with:
-          pixi-version: v0.62.2
           manifest-path: pyproject.toml
           # Workaround: Dynamic versioning (versioningit) causes lock file version mismatch.
           # We skip the editable package install and do it separately with pip.
