@@ -160,7 +160,6 @@ pytest-repeat = "*"
 pytest-xdist = "*"
 
 [tool.pixi.feature.package.dependencies]
-anaconda-client = ">=1.13.0,<2"
 twine = ">=6.1.0,<7"
 versioningit = "*"
 hatch = "*"
@@ -211,7 +210,7 @@ conda-build = { description = "Build the conda package", depends-on = [
   "conda-build-command",
   "reset-toml",
 ] }
-conda-publish = { cmd = "anaconda upload *.conda", description = "Publish the .conda package to anaconda.org", depends-on = [
+conda-publish = { cmd = "pixi upload anaconda --owner neutrons *.conda", description = "Publish the .conda package to anaconda.org", depends-on = [
   "conda-build",
 ] }
 # Misc
