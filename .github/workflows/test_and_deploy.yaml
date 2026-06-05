@@ -58,6 +58,10 @@ jobs:
   conda-build:
     name: Build conda package
     runs-on: ubuntu-latest
+    permissions:
+      contents: read          # for actions/checkout
+      security-events: write  # for github/codeql-action/upload-sarif to upload results
+      actions: read           # for upload-sarif to read run status (private repos)
     steps:
       - name: Checkout
         uses: actions/checkout@v6
@@ -102,41 +106,18 @@ jobs:
           module-name: ${{ env.MODULE_NAME }}
           conda-env-name: ${{ steps.install.outputs.conda_env }}
 
+      # Audit the dependencies of the conda package we just installed. SARIF
+      # results are uploaded to GitHub code scanning by the grype action.
+      - name: Scan installed environment with Grype
+        uses: neutrons/conda-actions/grype@v2
+        with:
+          path: ${{ steps.install.outputs.conda_install_dir }}
+
       - name: Upload conda package as artifact
         uses: actions/upload-artifact@v7
         with:
           name: artifact-conda-package
           path: ${{ env.PKG_NAME }}-*.conda
-
-  dependency-scan:
-    name: Scan dependencies with Grype
-    runs-on: ubuntu-latest
-    needs: conda-build
-    permissions:
-      contents: read          # for actions/checkout
-      security-events: write  # for github/codeql-action/upload-sarif to upload results
-      actions: read           # for upload-sarif to read run status (private repos)
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v6
-
-      - name: Download conda package artifact
-        uses: actions/download-artifact@v8
-        with:
-          name: artifact-conda-package
-          path: /tmp/local-channel/linux-64
-
-      - name: Install built conda package
-        id: install
-        uses: neutrons/conda-actions/pkg-install@v2
-        with:
-          package-name: ${{ env.PKG_NAME }}
-          local-channel: /tmp/local-channel
-
-      - name: Scan installed environment with Grype
-        uses: neutrons/conda-actions/grype@v2
-        with:
-          path: ${{ steps.install.outputs.conda_install_dir }}
 
   publish:
     name: Upload package to anaconda
