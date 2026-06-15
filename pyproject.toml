@@ -236,7 +236,7 @@ reset-toml = { cmd = "cp pyproject.toml.bak pyproject.toml; rm pyproject.toml.ba
 ##############
 
 [tool.pytest.ini_options]
-addopts = "-v --cov=packagenamepy --cov-report=term-missing"
+addopts = "-v --cov=packagenamepy --cov-report=term-missing --cov-report=xml"
 pythonpath = [".", "src", "scripts"]
 testpaths = ["tests"]
 python_files = ["test*.py"]
