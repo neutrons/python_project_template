@@ -21,7 +21,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/linux-64/cffi-2.0.0-py314h4a8dc5f_1.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/cmarkgfm-2024.11.20-py314h5bd0f2a_1.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/coverage-7.14.1-py314h67df5f8_0.conda
-      - conda: https://conda.anaconda.org/conda-forge/linux-64/cryptography-48.0.0-py314h7fe84b3_0.conda
+      - conda: https://conda.anaconda.org/conda-forge/linux-64/cryptography-49.0.0-py314h7fe84b3_0.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/cyrus-sasl-2.1.28-hac629b4_1.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/dbus-1.16.2-h24cb091_1.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/fontconfig-2.18.0-h27c8c51_0.conda
@@ -427,7 +427,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/cffi-2.0.0-py314h44086f9_1.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/cmarkgfm-2024.11.20-py314hb84d1df_1.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/coverage-7.14.1-py314h6e9b3f0_0.conda
-      - conda: https://conda.anaconda.org/conda-forge/osx-arm64/cryptography-48.0.0-py314h0d331bb_0.conda
+      - conda: https://conda.anaconda.org/conda-forge/osx-arm64/cryptography-49.0.0-py314h0d331bb_0.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/cyrus-sasl-2.1.28-hb961e35_1.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/fontconfig-2.18.0-h2b252f5_0.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/fribidi-1.0.16-hc919400_0.conda
@@ -554,7 +554,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/linux-64/cairo-1.18.4-he90730b_1.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/cffi-2.0.0-py314h4a8dc5f_1.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/contourpy-1.3.3-py314h97ea11e_4.conda
-      - conda: https://conda.anaconda.org/conda-forge/linux-64/cryptography-48.0.0-py314h7fe84b3_0.conda
+      - conda: https://conda.anaconda.org/conda-forge/linux-64/cryptography-49.0.0-py314h7fe84b3_0.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/cyrus-sasl-2.1.28-hac629b4_1.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/dbus-1.16.2-h24cb091_1.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/debugpy-1.8.20-py314h42812f9_0.conda
@@ -1021,7 +1021,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/cairo-1.18.4-he0f2337_1.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/cffi-2.0.0-py314h44086f9_1.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/contourpy-1.3.3-py314hf8a3a22_4.conda
-      - conda: https://conda.anaconda.org/conda-forge/osx-arm64/cryptography-48.0.0-py314h0d331bb_0.conda
+      - conda: https://conda.anaconda.org/conda-forge/osx-arm64/cryptography-49.0.0-py314h0d331bb_0.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/cyrus-sasl-2.1.28-hb961e35_1.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/debugpy-1.8.20-py314he609de1_0.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/fontconfig-2.18.0-h2b252f5_0.conda
@@ -1308,22 +1308,23 @@ packages:
   license_family: APACHE
   size: 413054
   timestamp: 1779837945378
-- conda: https://conda.anaconda.org/conda-forge/linux-64/cryptography-48.0.0-py314h7fe84b3_0.conda
-  sha256: 6ce32ae5829d21d3bca259f7e022d8a467d778ae1db548570a097d497c88012e
-  md5: 95d37edaeb19cc94ef1567a7e2abc1c9
+- conda: https://conda.anaconda.org/conda-forge/linux-64/cryptography-49.0.0-py314h7fe84b3_0.conda
+  sha256: 1c8128f2ba8fccf627729968de7fe7504dbb775c829e533439c9ee52134800fd
+  md5: b1dd101231d277ad724c40c788f6fdd8
   depends:
   - __glibc >=2.17,<3.0.a0
   - cffi >=2.0
   - libgcc >=14
-  - openssl >=3.5.6,<4.0a0
+  - openssl >=3.5.7,<4.0a0
   - python >=3.14,<3.15.0a0
   - python_abi 3.14.* *_cp314
   constrains:
   - __glibc >=2.17
   license: Apache-2.0 AND BSD-3-Clause AND PSF-2.0 AND MIT
   license_family: BSD
-  size: 1926884
-  timestamp: 1777966253398
+  run_exports: {}
+  size: 1930691
+  timestamp: 1781385496617
 - conda: https://conda.anaconda.org/conda-forge/linux-64/cyrus-sasl-2.1.28-hac629b4_1.conda
   sha256: 7684da83306bb69686c0506fb09aa7074e1a55ade50c3a879e4e5df6eebb1009
   md5: af491aae930edc096b58466c51c4126c
@@ -5671,21 +5672,22 @@ packages:
   license_family: APACHE
   size: 412237
   timestamp: 1779838737834
-- conda: https://conda.anaconda.org/conda-forge/osx-arm64/cryptography-48.0.0-py314h0d331bb_0.conda
-  sha256: a3ff33f01f96f75740bc69466bcc91e309984dc3359cf62b3421af3624cd56db
-  md5: a67712b3bf9e8819d12f9fd4bbfb9bf8
+- conda: https://conda.anaconda.org/conda-forge/osx-arm64/cryptography-49.0.0-py314h0d331bb_0.conda
+  sha256: 095f69075f4b54bf4d3674f7a529926a4e9bc9c1452093135d3fdbef233a4783
+  md5: 8eb2d079cb2d42f28bc85c73977d05de
   depends:
   - __osx >=11.0
   - cffi >=2.0
-  - openssl >=3.5.6,<4.0a0
+  - openssl >=3.5.7,<4.0a0
   - python >=3.14,<3.15.0a0
   - python_abi 3.14.* *_cp314
   constrains:
   - __osx >=11.0
   license: Apache-2.0 AND BSD-3-Clause AND PSF-2.0 AND MIT
   license_family: BSD
-  size: 1865213
-  timestamp: 1777966347441
+  run_exports: {}
+  size: 1871987
+  timestamp: 1781385445880
 - conda: https://conda.anaconda.org/conda-forge/osx-arm64/cyrus-sasl-2.1.28-hb961e35_1.conda
   sha256: 2bb1a8cfc2534b05718c21ffacd806c5c3d5289c9e8be12270d9fc5606c859bf
   md5: 784c64a42b083798c5acd2373df5b825
