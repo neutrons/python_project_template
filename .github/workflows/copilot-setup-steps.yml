@@ -32,7 +32,7 @@ jobs:
 
     # this will install pre-commit into a python environment
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - uses: actions/setup-python@v6
       - run: python -m pip install pre-commit
         shell: bash
