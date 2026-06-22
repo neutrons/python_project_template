@@ -116,6 +116,7 @@ virtualenv = ">=20.36.1,<21" # Known vulnerability in <20.36.1; capped due to ht
 cryptography = ">=48.0.1"    # CVE-2026-26007, CVE-2026-39892, GHSA-537c-gmf6-5ccf
 requests = ">=2.33.0"        # CVE-2026-25645
 pillow = ">=12.2.0"          # CVE-2026-25990, CVE-2026-40192
+msgpack-python = ">=1.2.1"   # GHSA-6v7p-g79w-8964
 
 [tool.pixi.pypi-dependencies]
 # PyPI dependencies, including this package to allow local editable installs
