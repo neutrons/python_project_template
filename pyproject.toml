@@ -204,7 +204,7 @@ pypi-publish = { cmd = "twine upload dist/*", description = "Publish the package
 pypi-publish-test = { cmd = "twine upload --repository testpypi dist/*", description = "Publish the package to TestPyPI", depends-on = [
   "pypi-build",
 ] }
-conda-build-command = { cmd = "pixi build", description = "Build the conda package command" }
+conda-build-command = { cmd = "pixi publish --target-channel ./local-channel", description = "Build the conda package command" }
 conda-build = { description = "Build the conda package", depends-on = [
   "backup-toml",
   "sync-version",
