@@ -88,6 +88,9 @@ jobs:
         run: |
           pixi run conda-build
 
+          # Copy conda package to workspace root so it can be uploaded as an artifact.
+          find local-channel -name "*.conda" -exec cp {} . \;
+
       # pkg-verify requires a conda env that already has the package
       # installed (and micromamba on PATH); pkg-install sets both up.
       - name: Install built conda package
