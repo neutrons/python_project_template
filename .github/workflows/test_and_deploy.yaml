@@ -95,13 +95,13 @@ jobs:
       # installed (and micromamba on PATH); pkg-install sets both up.
       - name: Install built conda package
         id: install
-        uses: neutrons/conda-actions/pkg-install@bba9ca89d48d9ae846db9650cc63fde736340b3d # v2
+        uses: neutrons/gh-actions/pkg-install@a1e1c8b4123ced6c66fe57b9a60a56a6e4bf6861 # v1
         with:
           package-name: ${{ env.PKG_NAME }}
           local-channel: ./local-channel
 
       - name: Verify conda package
-        uses: neutrons/conda-actions/pkg-verify@bba9ca89d48d9ae846db9650cc63fde736340b3d # v2
+        uses: neutrons/gh-actions/pkg-verify@a1e1c8b4123ced6c66fe57b9a60a56a6e4bf6861 # v1
         with:
           package-name: ${{ env.PKG_NAME }}
           module-name: ${{ env.MODULE_NAME }}
@@ -110,7 +110,7 @@ jobs:
       # Audit the dependencies of the conda package we just installed. SARIF
       # results are uploaded to GitHub code scanning by the grype action.
       - name: Scan installed environment with Grype
-        uses: neutrons/conda-actions/grype@bba9ca89d48d9ae846db9650cc63fde736340b3d # v2
+        uses: neutrons/gh-actions/grype@a1e1c8b4123ced6c66fe57b9a60a56a6e4bf6861 # v1
         with:
           path: ${{ steps.install.outputs.conda_install_dir }}
 
@@ -150,7 +150,7 @@ jobs:
           name: artifact-conda-package
 
       - name: Upload package to anaconda
-        uses: neutrons/conda-actions/publish@bba9ca89d48d9ae846db9650cc63fde736340b3d # v2
+        uses: neutrons/gh-actions/publish@a1e1c8b4123ced6c66fe57b9a60a56a6e4bf6861 # v1
         with:
           anaconda-token: ${{ secrets.ANACONDA_TOKEN }}
           organization: neutrons
@@ -158,7 +158,7 @@ jobs:
 
       - name: Remove old packages
         if: github.ref == 'refs/heads/next'
-        uses: neutrons/conda-actions/pkg-remove@bba9ca89d48d9ae846db9650cc63fde736340b3d # v2
+        uses: neutrons/gh-actions/pkg-remove@a1e1c8b4123ced6c66fe57b9a60a56a6e4bf6861 # v1
         with:
           anaconda_token: ${{ secrets.ANACONDA_TOKEN }}
           organization: neutrons
