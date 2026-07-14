@@ -115,7 +115,7 @@ filelock = ">=3.20.3"        # Known vulnerability in <3.20.3
 virtualenv = ">=20.36.1,<21" # Known vulnerability in <20.36.1; capped due to https://github.com/pypa/hatch/issues/2193
 cryptography = ">=48.0.1"    # CVE-2026-26007, CVE-2026-39892, GHSA-537c-gmf6-5ccf
 requests = ">=2.33.0"        # CVE-2026-25645
-pillow = ">=12.2.0"          # CVE-2026-25990, CVE-2026-40192
+pillow = ">=12.3.0"          # CVE-2026-25990, CVE-2026-40192, PYSEC-2026-2255/2256/2257
 msgpack-python = ">=1.2.1"   # GHSA-6v7p-g79w-8964
 
 [tool.pixi.pypi-dependencies]
