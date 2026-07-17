@@ -95,24 +95,24 @@ jobs:
       # installed (and micromamba on PATH); pkg-install sets both up.
       - name: Install built conda package
         id: install
-        uses: neutrons/gh-actions/pkg-install@a1e1c8b4123ced6c66fe57b9a60a56a6e4bf6861 # v1
+        uses: neutrons/gh-actions/pkg-install@eb7a7c6fcfd0cda1a7b238329afc0afd09a4f4af # v2
         with:
           package-name: ${{ env.PKG_NAME }}
           local-channel: ./local-channel
 
       - name: Verify conda package
-        uses: neutrons/gh-actions/pkg-verify@a1e1c8b4123ced6c66fe57b9a60a56a6e4bf6861 # v1
+        uses: neutrons/gh-actions/pkg-verify@eb7a7c6fcfd0cda1a7b238329afc0afd09a4f4af # v2
         with:
           package-name: ${{ env.PKG_NAME }}
           module-name: ${{ env.MODULE_NAME }}
-          conda-env-name: ${{ steps.install.outputs.conda_env }}
+          conda-env-name: ${{ steps.install.outputs.conda-env }}
 
       # Audit the dependencies of the conda package we just installed. SARIF
       # results are uploaded to GitHub code scanning by the grype action.
       - name: Scan installed environment with Grype
-        uses: neutrons/gh-actions/grype@a1e1c8b4123ced6c66fe57b9a60a56a6e4bf6861 # v1
+        uses: neutrons/gh-actions/grype@eb7a7c6fcfd0cda1a7b238329afc0afd09a4f4af # v2
         with:
-          path: ${{ steps.install.outputs.conda_install_dir }}
+          path: ${{ steps.install.outputs.conda-install-dir }}
 
       - name: Upload conda package as artifact
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
@@ -150,7 +150,7 @@ jobs:
           name: artifact-conda-package
 
       - name: Upload package to anaconda
-        uses: neutrons/gh-actions/publish@a1e1c8b4123ced6c66fe57b9a60a56a6e4bf6861 # v1
+        uses: neutrons/gh-actions/publish@eb7a7c6fcfd0cda1a7b238329afc0afd09a4f4af # v2
         with:
           anaconda-token: ${{ secrets.ANACONDA_TOKEN }}
           organization: neutrons
@@ -158,11 +158,11 @@ jobs:
 
       - name: Remove old packages
         if: github.ref == 'refs/heads/next'
-        uses: neutrons/gh-actions/pkg-remove@a1e1c8b4123ced6c66fe57b9a60a56a6e4bf6861 # v1
+        uses: neutrons/gh-actions/pkg-remove@eb7a7c6fcfd0cda1a7b238329afc0afd09a4f4af # v2
         with:
-          anaconda_token: ${{ secrets.ANACONDA_TOKEN }}
+          anaconda-token: ${{ secrets.ANACONDA_TOKEN }}
           organization: neutrons
-          package_name: ${{ env.PKG_NAME }}
+          package-name: ${{ env.PKG_NAME }}
           label: ${{ env.CONDA_LABEL }}
           keep: 5
 
