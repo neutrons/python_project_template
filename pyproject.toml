@@ -161,8 +161,8 @@ pytest-repeat = "*"
 pytest-xdist = "*"
 
 [tool.pixi.feature.package.dependencies]
-twine = ">=6.1.0,<7"  # for PyPI publishing
-hatch = "*"  # for building wheels and sdist
+twine = ">=6.1.0,<7" # for PyPI publishing
+hatch = "*"          # for building wheels and sdist
 versioningit = "*"
 
 [tool.pixi.feature.package.pypi-dependencies]
