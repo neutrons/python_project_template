@@ -266,33 +266,29 @@ Similarly, if you are not publishing to conda, you can remove any related depend
 
 ### Auditing dependencies
 
-The tool [`pip-audit`](https://github.com/pypa/pip-audit) allows for checking dependencies for versions with known weaknesses or vulnerabilities as registered in [open source vulnerabilities database (osv)](https://osv.dev/).
-This is provided as the task `audit-deps` which will verify that there are no known python dependencies in the pixi environment.
+Dependency scanning is **report-only**: the `conda-build` job scans the installed conda
+environment with [Grype](https://github.com/anchore/grype) and uploads SARIF to the repository's
+Security tab. Review those findings on your own schedule.
 
-**Finding source of issue:** This is an outdated example used to demonstrate how to suppress vulnerabilities.
-Assume that `pixi run audit-deps` returns a message that there is a issue [PYSEC-2025-61](https://osv.dev/vulnerability/PYSEC-2025-61) that is associated with pillow v11.2.0.
-Since this is an indirect dependency, one can use
+There is deliberately **no merge-blocking dependency scan**. A blocking scan queries live
+advisory databases, so it can turn red with no change to the code — and the failure lands on
+whichever contributor happens to open the next pull request.
 
-```bash
-$ pixi tree --invert pillow
+If you want a local, on-demand check, add [`pip-audit`](https://github.com/pypa/pip-audit) back
+as a developer dependency and task — just keep it out of CI:
 
-  pillow 11.2.0
-  └── anaconda-client 1.13.0
+```toml
+[tool.pixi.feature.developer.dependencies]
+pip-audit = "*"
+
+[tool.pixi.tasks]
+audit-deps = { cmd = "pip-audit --local -s osv", description = "Audit dependencies for known vulnerabilities" }
 ```
 
-to find out that this is included by the anaconda-client package which is also not a runtime dependency.
-This can be ignored.
-
-**Ignoring a vulnerability:** Unfortunately, `pip-audit` does not have a configuration file that allows for ignoring issues.
-This is done with a suppression in the `pyproject.toml` by modifying the task.
-
-```
-# ignore pillow error because it is only used by anaconda-client v1.13.0
-audit-deps = { cmd = "pip-audit --local -s osv --ignore-vuln=PYSEC-2025-61" }
-```
-
-The comment is added to save future developers effort in confirming the issue.
-At a later date, the team should periodically remove the suppression and confirm the issue persists or remove the suppression permanently.
+`pip-audit` has no ignore file, so suppressions go inline in the task command
+(`--ignore-vuln=PYSEC-2025-61`) with a comment explaining why. `pixi tree --invert <package>`
+shows which dependency pulled a flagged package in, which is usually enough to tell a real
+exposure from a transitive one.
 
 ## Pixi
 
@@ -316,9 +312,8 @@ You can use `pixi task list` to see available tasks and their descriptions.
 $> pixi task list
 Tasks that can run on this machine:
 -----------------------------------
-audit-deps, backup-toml, build-docs, clean, clean-all, clean-conda, clean-docs, clean-pypi, conda-build, conda-build-command, conda-publish, pypi-build, pypi-publish, pypi-publish-test, pypi-sdist, pypi-wheel, reset-toml, sync-version, test, test-docs
+backup-toml, build-docs, clean, clean-all, clean-conda, clean-docs, clean-pypi, conda-build, conda-build-command, conda-publish, pypi-build, pypi-publish, pypi-publish-test, pypi-sdist, pypi-wheel, reset-toml, sync-version, test, test-docs
 Task                 Description
-audit-deps           Audit the package dependencies for vulnerabilities
 backup-toml          Backup the pyproject.toml file
 build-docs           Build documentation
 clean                Clean up various caches and build artifacts
