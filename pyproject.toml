@@ -111,15 +111,15 @@ pyqt = "*"
 # deliberately (they keep a fresh environment off bad versions), but nothing in CI
 # enforces or refreshes them any more -- the Grype scan in the conda-build job is
 # report-only. Bump them if you want, but a stale floor will not fail a build.
-h2 = ">=4.3.0"               # Known vulnerability in <4.3.0
+h2 = ">=4.3.0"             # Known vulnerability in <4.3.0
 brotli = ">=1.2.0"
-urllib3 = ">=2.6.3"          # Known vulnerability in <2.6.3
-filelock = ">=3.20.3"        # Known vulnerability in <3.20.3
-virtualenv = ">=20.36.1,<21" # Known vulnerability in <20.36.1; capped due to https://github.com/pypa/hatch/issues/2193
-cryptography = ">=48.0.1"    # CVE-2026-26007, CVE-2026-39892, GHSA-537c-gmf6-5ccf
-requests = ">=2.33.0"        # CVE-2026-25645
-pillow = ">=12.3.0"          # CVE-2026-25990, CVE-2026-40192, PYSEC-2026-2255/2256/2257
-msgpack-python = ">=1.2.1"   # GHSA-6v7p-g79w-8964
+urllib3 = ">=2.6.3"        # Known vulnerability in <2.6.3
+filelock = ">=3.20.3"      # Known vulnerability in <3.20.3
+virtualenv = ">=21.7.12"   # GHSA-94p9-xgh2-xp45, GHSA-9h9j-4vrj-gf7g
+cryptography = ">=48.0.1"  # CVE-2026-26007, CVE-2026-39892, GHSA-537c-gmf6-5ccf
+requests = ">=2.33.0"      # CVE-2026-25645
+pillow = ">=12.3.0"        # CVE-2026-25990, CVE-2026-40192, PYSEC-2026-2255/2256/2257
+msgpack-python = ">=1.2.1" # GHSA-6v7p-g79w-8964
 
 [tool.pixi.pypi-dependencies]
 # PyPI dependencies, including this package to allow local editable installs
@@ -165,7 +165,7 @@ pytest-xdist = "*"
 
 [tool.pixi.feature.package.dependencies]
 twine = ">=6.1.0,<7" # for PyPI publishing
-hatch = "*"          # for building wheels and sdist
+hatch = ">=1.16.5"   # for building wheels and sdist; >=1.16.5 supports virtualenv 21
 versioningit = "*"
 
 [tool.pixi.feature.package.pypi-dependencies]
